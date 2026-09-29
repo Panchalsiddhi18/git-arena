@@ -1,0 +1,2400 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>
+    GIT Arena | Leaderboard
+</title>
+
+
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background:#08090d;
+
+    color:#f5f7fa;
+
+    line-height:1.6;
+
+    animation:
+        pageEnter .6s ease;
+}
+
+@keyframes pageEnter{
+
+    from{
+        opacity:0;
+        transform:translateY(10px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+button{
+    font-family:inherit;
+}
+
+
+/* =========================================================
+   NAV
+========================================================= */
+
+nav{
+
+    height:72px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:0 7%;
+
+    background:#0d0f15;
+
+    border-bottom:
+        1px solid #242832;
+
+    position:sticky;
+
+    top:0;
+
+    z-index:1000;
+}
+
+.logo{
+
+    font-size:22px;
+
+    font-weight:800;
+
+    color:#b8ff3d;
+
+    letter-spacing:1px;
+}
+
+.logo span{
+    color:#ffffff;
+}
+
+.nav-links{
+
+    display:flex;
+
+    gap:28px;
+
+    list-style:none;
+}
+
+.nav-links a{
+
+    color:#a9afb9;
+
+    text-decoration:none;
+
+    font-size:14px;
+
+    transition:.25s;
+}
+
+.nav-links a:hover,
+.nav-links .active-link{
+
+    color:#b8ff3d;
+}
+
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+
+.container{
+
+    width:86%;
+
+    max-width:1350px;
+
+    margin:auto;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+
+    padding:75px 0 45px;
+
+    background:
+
+        radial-gradient(
+            circle at 80% 15%,
+            rgba(140,65,255,.16),
+            transparent 32%
+        ),
+
+        radial-gradient(
+            circle at 15% 25%,
+            rgba(184,255,61,.07),
+            transparent 30%
+        );
+}
+
+.eyebrow{
+
+    color:#b8ff3d;
+
+    font-size:11px;
+
+    font-weight:800;
+
+    letter-spacing:2px;
+
+    margin-bottom:10px;
+}
+
+.hero h1{
+
+    font-size:
+        clamp(
+            42px,
+            6vw,
+            70px
+        );
+
+    line-height:1;
+
+    margin-bottom:18px;
+
+    animation:
+        heroTitle .7s ease;
+}
+
+.hero h1 span{
+    color:#b8ff3d;
+}
+
+.hero p{
+
+    color:#8b939f;
+
+    max-width:680px;
+
+    font-size:15px;
+
+    animation:
+        heroText .9s ease;
+}
+
+@keyframes heroTitle{
+
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes heroText{
+
+    from{
+        opacity:0;
+        transform:translateY(15px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+
+/* =========================================================
+   CURRENT PLAYER
+========================================================= */
+
+.current-player{
+
+    margin:
+        15px 0 35px;
+
+    padding:18px 22px;
+
+    border:
+        1px solid #303742;
+
+    border-radius:15px;
+
+    background:#11141b;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:20px;
+
+    animation:
+        cardAppear .7s ease;
+}
+
+.current-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+}
+
+.current-avatar{
+
+    width:46px;
+
+    height:46px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#1d2711;
+
+    border:
+        1px solid #b8ff3d;
+
+    color:#b8ff3d;
+
+    font-size:13px;
+
+    font-weight:800;
+}
+
+.current-left small{
+
+    display:block;
+
+    color:#737c88;
+
+    font-size:9px;
+
+    letter-spacing:1px;
+
+    margin-bottom:2px;
+}
+
+.current-left strong{
+
+    font-size:14px;
+}
+
+.current-right{
+
+    display:flex;
+
+    gap:25px;
+
+    align-items:center;
+}
+
+.current-stat{
+
+    text-align:right;
+}
+
+.current-stat small{
+
+    display:block;
+
+    color:#68717d;
+
+    font-size:8px;
+
+    text-transform:uppercase;
+}
+
+.current-stat strong{
+
+    color:#b8ff3d;
+
+    font-size:15px;
+}
+
+
+/* =========================================================
+   PODIUM
+========================================================= */
+
+.podium{
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 1.15fr 1fr;
+
+    align-items:end;
+
+    gap:15px;
+
+    margin:
+        30px 0 45px;
+}
+
+.podium-card{
+
+    background:#11141b;
+
+    border:
+        1px solid #2c333e;
+
+    border-radius:
+        18px 18px 12px 12px;
+
+    padding:24px 18px;
+
+    text-align:center;
+
+    position:relative;
+
+    overflow:hidden;
+
+    animation:
+        podiumAppear .6s ease both;
+}
+
+.podium-card:nth-child(1){
+    animation-delay:.1s;
+}
+
+.podium-card:nth-child(2){
+    animation-delay:.2s;
+}
+
+.podium-card:nth-child(3){
+    animation-delay:.3s;
+}
+
+.podium-card.first{
+
+    padding-top:35px;
+
+    border-color:
+        rgba(184,255,61,.45);
+
+    min-height:270px;
+}
+
+.podium-card.second{
+
+    min-height:230px;
+}
+
+.podium-card.third{
+
+    min-height:210px;
+}
+
+@keyframes podiumAppear{
+
+    from{
+
+        opacity:0;
+
+        transform:
+            translateY(25px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+.crown{
+
+    font-size:28px;
+
+    margin-bottom:10px;
+}
+
+.podium-avatar{
+
+    width:65px;
+
+    height:65px;
+
+    border-radius:50%;
+
+    margin:0 auto 12px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#191e25;
+
+    border:
+        1px solid #3c4552;
+
+    color:#c9cfd7;
+
+    font-weight:800;
+}
+
+.first .podium-avatar{
+
+    width:76px;
+
+    height:76px;
+
+    border-color:#b8ff3d;
+
+    color:#b8ff3d;
+
+    background:#19220f;
+}
+
+.podium-rank{
+
+    color:#7e8793;
+
+    font-size:10px;
+
+    font-weight:800;
+
+    letter-spacing:1px;
+
+    margin-bottom:5px;
+}
+
+.podium-card h3{
+
+    font-size:17px;
+
+    margin-bottom:3px;
+}
+
+.podium-card p{
+
+    color:#727b87;
+
+    font-size:10px;
+
+    margin-bottom:12px;
+}
+
+.podium-xp{
+
+    color:#b8ff3d;
+
+    font-size:20px;
+
+    font-weight:800;
+}
+
+.podium-level{
+
+    color:#737c88;
+
+    font-size:9px;
+
+    margin-top:2px;
+}
+
+
+/* =========================================================
+   TABLE SECTION
+========================================================= */
+
+.section-title{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:end;
+
+    margin-bottom:18px;
+}
+
+.section-title h2{
+
+    font-size:26px;
+}
+
+.section-title p{
+
+    color:#707986;
+
+    font-size:12px;
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.leaderboard{
+
+    background:#11141b;
+
+    border:
+        1px solid #2a303a;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    margin-bottom:55px;
+}
+
+.table-head,
+.player-row{
+
+    display:grid;
+
+    grid-template-columns:
+        70px
+        1.5fr
+        1fr
+        1fr
+        1fr
+        1.3fr;
+
+    gap:15px;
+
+    align-items:center;
+}
+
+.table-head{
+
+    padding:15px 20px;
+
+    background:#151920;
+
+    color:#68717d;
+
+    font-size:9px;
+
+    text-transform:uppercase;
+
+    letter-spacing:1px;
+
+    border-bottom:
+        1px solid #292f39;
+}
+
+.player-row{
+
+    padding:18px 20px;
+
+    border-bottom:
+        1px solid #222832;
+
+    transition:.25s;
+
+    animation:
+        rowAppear .5s ease both;
+}
+
+.player-row:last-child{
+
+    border-bottom:none;
+}
+
+.player-row:hover{
+
+    background:#151920;
+}
+
+.player-row.current{
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(184,255,61,.08),
+            transparent
+        );
+
+    border-left:
+        3px solid #b8ff3d;
+}
+
+@keyframes rowAppear{
+
+    from{
+
+        opacity:0;
+
+        transform:
+            translateX(-10px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+            translateX(0);
+
+    }
+
+}
+
+.rank{
+
+    color:#8b94a0;
+
+    font-size:13px;
+
+    font-weight:800;
+}
+
+.rank.top{
+
+    color:#b8ff3d;
+}
+
+.builder{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:11px;
+}
+
+.builder-avatar{
+
+    width:38px;
+
+    height:38px;
+
+    min-width:38px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#191e25;
+
+    border:
+        1px solid #353d49;
+
+    color:#c6ccd4;
+
+    font-size:10px;
+
+    font-weight:800;
+}
+
+.current .builder-avatar{
+
+    background:#1d2711;
+
+    border-color:#b8ff3d;
+
+    color:#b8ff3d;
+}
+
+.builder strong{
+
+    display:block;
+
+    font-size:12px;
+}
+
+.builder small{
+
+    display:block;
+
+    color:#69727e;
+
+    font-size:9px;
+}
+
+.xp-value{
+
+    color:#b8ff3d;
+
+    font-weight:800;
+
+    font-size:12px;
+}
+
+.level{
+
+    color:#c0c6cf;
+
+    font-size:11px;
+}
+
+.streak{
+
+    color:#b7bec8;
+
+    font-size:11px;
+}
+
+.progress-cell{
+
+    width:100%;
+}
+
+.progress-top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    font-size:8px;
+
+    color:#68717d;
+
+    margin-bottom:5px;
+}
+
+.progress-top strong{
+
+    color:#aeb5bf;
+}
+
+.progress-bar{
+
+    height:6px;
+
+    background:#292e36;
+
+    border-radius:999px;
+
+    overflow:hidden;
+}
+
+.progress-fill{
+
+    height:100%;
+
+    background:#b8ff3d;
+
+    border-radius:999px;
+}
+
+
+/* =========================================================
+   RANK MOVEMENT
+========================================================= */
+
+.rank-movement{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:4px;
+
+    margin-left:5px;
+
+    font-size:9px;
+
+    color:#b8ff3d;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer{
+
+    border-top:
+        1px solid #242832;
+
+    padding:30px 7%;
+
+    text-align:center;
+
+    color:#69717d;
+
+    font-size:11px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:950px){
+
+    .table-head,
+    .player-row{
+
+        grid-template-columns:
+            50px
+            1.5fr
+            1fr
+            1fr
+            1fr;
+    }
+
+    .progress-cell{
+
+        display:none;
+    }
+
+}
+
+@media(max-width:700px){
+
+    nav{
+
+        padding:0 5%;
+    }
+
+    .nav-links{
+
+        gap:12px;
+    }
+
+    .nav-links a{
+
+        font-size:10px;
+    }
+
+    .container{
+
+        width:90%;
+    }
+
+    .hero{
+
+        padding-top:55px;
+    }
+
+    .current-player{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+    }
+
+    .current-right{
+
+        width:100%;
+
+        justify-content:space-between;
+    }
+
+    .podium{
+
+        grid-template-columns:1fr;
+
+        align-items:stretch;
+    }
+
+    .podium-card.first,
+    .podium-card.second,
+    .podium-card.third{
+
+        min-height:auto;
+    }
+
+    .table-head{
+
+        display:none;
+    }
+
+    .player-row{
+
+        grid-template-columns:
+            40px
+            1fr
+            auto;
+
+        padding:15px;
+    }
+
+    .player-row .level,
+    .player-row .streak{
+
+        display:none;
+    }
+
+}
+
+@media(max-width:450px){
+
+    .hero h1{
+
+        font-size:42px;
+    }
+
+    .current-right{
+
+        gap:10px;
+    }
+
+}
+/* =========================================================
+   EXTRA LEADERBOARD MOBILE POLISH
+========================================================= */
+
+@media(max-width:600px){
+
+    .current-player{
+        padding:16px;
+    }
+
+    .current-right{
+        display:grid;
+        grid-template-columns:
+            repeat(2,1fr);
+
+        width:100%;
+        gap:12px;
+    }
+
+    .current-stat{
+        text-align:left;
+        padding:10px;
+
+        background:#151920;
+
+        border:
+            1px solid #282f39;
+
+        border-radius:10px;
+    }
+
+    .podium{
+        gap:10px;
+    }
+
+    .podium-card{
+        padding:20px;
+    }
+
+    .section-title{
+        align-items:flex-start;
+    }
+
+    .section-title h2{
+        font-size:22px;
+    }
+
+    .player-row{
+        grid-template-columns:
+            35px
+            1fr
+            auto;
+
+        gap:8px;
+    }
+
+    .xp-value{
+        font-size:10px;
+    }
+
+    .builder-avatar{
+        width:34px;
+        height:34px;
+        min-width:34px;
+    }
+
+}
+
+@media(max-width:400px){
+
+    .nav-links{
+        max-width:180px;
+    }
+
+    .nav-links a{
+        font-size:8px;
+    }
+
+    .hero h1{
+        font-size:36px;
+    }
+
+}
+/* =========================================================
+   STEP 8.6 — MOBILE HAMBURGER NAVIGATION
+========================================================= */
+
+.arena-nav{
+    position:sticky;
+    top:0;
+    z-index:1000;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 7%;
+
+    min-height:72px;
+
+    background:#0d0f15;
+
+    border-bottom:1px solid #242832;
+}
+
+.arena-nav .logo{
+    font-size:22px;
+    font-weight:800;
+    letter-spacing:1px;
+    color:#b8ff3d;
+}
+
+.arena-nav .logo span{
+    color:#ffffff;
+}
+
+.arena-nav .nav-links{
+    display:flex;
+    align-items:center;
+    gap:28px;
+
+    list-style:none;
+}
+
+.arena-nav .nav-links a{
+    color:#a9afb9;
+    text-decoration:none;
+
+    font-size:14px;
+
+    transition:
+        color .25s ease;
+}
+
+.arena-nav .nav-links a:hover{
+    color:#b8ff3d;
+}
+
+
+/* =========================================================
+   HAMBURGER
+========================================================= */
+
+.menu-toggle{
+
+    display:none;
+
+    width:42px;
+    height:42px;
+
+    border:1px solid #303743;
+
+    border-radius:10px;
+
+    background:#151920;
+
+    cursor:pointer;
+
+    align-items:center;
+    justify-content:center;
+
+    flex-direction:column;
+
+    gap:5px;
+
+    transition:.25s;
+}
+
+.menu-toggle span{
+
+    display:block;
+
+    width:19px;
+    height:2px;
+
+    background:#b8ff3d;
+
+    border-radius:5px;
+
+    transition:
+        transform .25s ease,
+        opacity .25s ease;
+}
+
+.menu-toggle:hover{
+
+    border-color:#b8ff3d;
+
+    background:#1a2112;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:700px){
+
+    .arena-nav{
+
+        padding:
+            0 5%;
+
+        min-height:66px;
+
+    }
+
+    .menu-toggle{
+
+        display:flex;
+
+        position:relative;
+
+        z-index:1002;
+
+    }
+
+    .arena-nav .nav-links{
+
+        position:absolute;
+
+        top:66px;
+
+        left:0;
+
+        width:100%;
+
+        padding:15px 5% 20px;
+
+        background:#0d0f15;
+
+        border-bottom:
+            1px solid #292f39;
+
+        display:flex;
+
+        flex-direction:column;
+
+        align-items:stretch;
+
+        gap:4px;
+
+        opacity:0;
+
+        visibility:hidden;
+
+        transform:
+            translateY(-10px);
+
+        transition:
+            opacity .25s ease,
+            transform .25s ease,
+            visibility .25s ease;
+
+    }
+
+    .arena-nav .nav-links.open{
+
+        opacity:1;
+
+        visibility:visible;
+
+        transform:
+            translateY(0);
+
+    }
+
+    .arena-nav .nav-links li{
+        width:100%;
+    }
+
+    .arena-nav .nav-links a{
+
+        display:block;
+
+        width:100%;
+
+        padding:13px 15px;
+
+        border-radius:9px;
+
+        font-size:12px;
+
+    }
+
+    .arena-nav .nav-links a:hover{
+
+        background:#171b22;
+
+    }
+
+
+    /* Hamburger animation */
+
+    .menu-toggle.open span:nth-child(1){
+
+        transform:
+            translateY(7px)
+            rotate(45deg);
+
+    }
+
+    .menu-toggle.open span:nth-child(2){
+
+        opacity:0;
+
+    }
+
+    .menu-toggle.open span:nth-child(3){
+
+        transform:
+            translateY(-7px)
+            rotate(-45deg);
+
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL PHONE
+========================================================= */
+
+@media(max-width:380px){
+
+    .arena-nav .logo{
+
+        font-size:18px;
+
+    }
+
+    .menu-toggle{
+
+        width:38px;
+        height:38px;
+
+    }
+
+}
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAV
+===================================================== -->
+
+<nav class="arena-nav">
+
+    <div class="logo">
+        GIT <span>ARENA</span>
+    </div>
+
+    <button
+        class="menu-toggle"
+        id="menuToggle"
+        aria-label="Open navigation"
+        aria-expanded="false"
+    >
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <ul
+        class="nav-links"
+        id="navLinks"
+    >
+
+        <li>
+            <a href="index.html">
+                Home
+            </a>
+        </li>
+
+        <li>
+            <a href="challenges.html">
+                Challenges
+            </a>
+        </li>
+
+        <li>
+            <a href="leaderboard.html">
+                Leaderboard
+            </a>
+        </li>
+
+        <li>
+            <a href="profile.html">
+                Profile
+            </a>
+        </li>
+
+    </ul>
+
+</nav>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<header class="hero">
+
+    <div class="container">
+
+        <div class="eyebrow">
+            GIT ARENA • COMPETITION
+        </div>
+
+        <h1>
+
+            CLIMB THE
+            <span>ARENA.</span>
+
+        </h1>
+
+        <p>
+
+            Every mission earns XP.
+            Every XP changes your position.
+            Build, ship and see how you stack up
+            against other builders.
+
+        </p>
+
+    </div>
+
+</header>
+
+
+<main class="container">
+
+
+<!-- =====================================================
+     CURRENT PLAYER
+===================================================== -->
+
+<section
+    class="current-player"
+    id="currentPlayer"
+>
+
+    <div class="current-left">
+
+        <div
+            class="current-avatar"
+            id="currentAvatar">
+
+            SP
+
+        </div>
+
+
+        <div>
+
+            <small>
+                YOUR CURRENT POSITION
+            </small>
+
+            <strong
+                id="currentName">
+
+                Siddhi Panchal
+
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <div class="current-right">
+
+
+        <div class="current-stat">
+
+            <small>
+                RANK
+            </small>
+
+            <strong id="currentRank">
+                #3
+            </strong>
+
+        </div>
+
+
+        <div class="current-stat">
+
+            <small>
+                XP
+            </small>
+
+            <strong id="currentXP">
+                3480
+            </strong>
+
+        </div>
+
+
+        <div class="current-stat">
+
+            <small>
+                LEVEL
+            </small>
+
+            <strong id="currentLevel">
+                7
+            </strong>
+
+        </div>
+
+
+        <div class="current-stat">
+
+            <small>
+                STREAK
+            </small>
+
+            <strong id="currentStreak">
+                🔥 7
+            </strong>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     PODIUM
+===================================================== -->
+
+<section
+    class="podium"
+    id="podium"
+>
+</section>
+
+
+<!-- =====================================================
+     LEADERBOARD
+===================================================== -->
+
+<section class="section-title">
+
+    <div>
+
+        <h2>
+            Global Rankings
+        </h2>
+
+        <p>
+            Builders ranked by total Arena XP.
+        </p>
+
+    </div>
+
+</section>
+
+
+<section class="leaderboard">
+
+
+    <div class="table-head">
+
+        <div>
+            Rank
+        </div>
+
+        <div>
+            Builder
+        </div>
+
+        <div>
+            XP
+        </div>
+
+        <div>
+            Level
+        </div>
+
+        <div>
+            Streak
+        </div>
+
+        <div>
+            Next Level
+        </div>
+
+    </div>
+
+
+    <div id="leaderboardRows">
+    </div>
+
+
+</section>
+
+
+</main>
+
+
+<footer>
+
+    GIT Arena • Build. Ship. Level Up.
+
+</footer>
+
+
+<script>
+
+/* =========================================================
+   DEFAULT PROFILE
+========================================================= */
+
+const defaultProfile = {
+
+    name:
+        "Siddhi Panchal",
+
+    xp:
+        3480,
+
+    level:
+        7,
+
+    streak:
+        7,
+
+    missions:
+        10,
+
+    badges:[],
+
+    completedMissionIds:[]
+
+};
+
+
+/* =========================================================
+   LOAD PROFILE
+========================================================= */
+
+function getProfile(){
+
+    const saved =
+        localStorage.getItem(
+            "arenaProfile"
+        );
+
+
+    if(saved){
+
+        return JSON.parse(saved);
+
+    }
+
+
+    return defaultProfile;
+
+}
+
+
+const profile =
+    getProfile();
+
+
+/* =========================================================
+   LEVEL
+========================================================= */
+
+function calculateLevel(xp){
+
+    return Math.floor(
+        Number(xp) / 500
+    ) + 1;
+
+}
+
+
+profile.level =
+    calculateLevel(
+        profile.xp
+    );
+
+
+/* =========================================================
+   LEADERBOARD USERS
+========================================================= */
+
+let users = [
+
+    {
+        name:
+            "Aarav Shah",
+
+        category:
+            "AI / ML",
+
+        xp:
+            4280,
+
+        streak:
+            12,
+
+        level:
+            9
+
+    },
+
+
+    {
+        name:
+            "Riya Patel",
+
+        category:
+            "Web Development",
+
+        xp:
+            3910,
+
+        streak:
+            9,
+
+        level:
+            8
+
+    },
+
+
+    {
+        name:
+            "Siddhi Panchal",
+
+        category:
+            "GIT Club Builder",
+
+        xp:
+            3480,
+
+        streak:
+            7,
+
+        level:
+            7,
+
+        current:true
+
+    },
+
+
+    {
+        name:
+            "Dev Mehta",
+
+        category:
+            "Cybersecurity",
+
+        xp:
+            3120,
+
+        streak:
+            6,
+
+        level:
+            7
+
+    },
+
+
+    {
+        name:
+            "Nirali Desai",
+
+        category:
+            "Git & DevOps",
+
+        xp:
+            2860,
+
+        streak:
+            5,
+
+        level:
+            6
+
+    },
+
+
+    {
+        name:
+            "Kunal Shah",
+
+        category:
+            "AI / ML",
+
+        xp:
+            2540,
+
+        streak:
+            4,
+
+        level:
+            6
+
+    }
+
+];
+
+
+/* =========================================================
+   SYNC CURRENT USER
+========================================================= */
+
+users =
+    users.map(
+        user => {
+
+            if(
+                user.name ===
+                profile.name
+            ){
+
+                return {
+
+                    ...user,
+
+                    xp:
+                        profile.xp,
+
+                    level:
+                        profile.level,
+
+                    streak:
+                        profile.streak,
+
+                    current:true
+
+                };
+
+            }
+
+
+            return user;
+
+        }
+    );
+
+
+/* =========================================================
+   SORT
+========================================================= */
+
+users.sort(
+    (a,b) =>
+        b.xp -
+        a.xp
+);
+
+
+/* =========================================================
+   CURRENT RANK
+========================================================= */
+
+const currentIndex =
+    users.findIndex(
+        user =>
+            user.current
+    );
+
+
+const currentRank =
+    currentIndex + 1;
+
+
+document.getElementById(
+    "currentRank"
+).textContent =
+    "#" +
+    currentRank;
+
+
+document.getElementById(
+    "currentName"
+).textContent =
+    profile.name;
+
+
+document.getElementById(
+    "currentXP"
+).textContent =
+    profile.xp;
+
+
+document.getElementById(
+    "currentLevel"
+).textContent =
+    profile.level;
+
+
+document.getElementById(
+    "currentStreak"
+).textContent =
+    "🔥 " +
+    profile.streak;
+
+
+/* =========================================================
+   INITIALS
+========================================================= */
+
+function initials(name){
+
+    return name
+        .split(" ")
+        .map(
+            word =>
+                word[0]
+        )
+        .join("")
+        .slice(0,2)
+        .toUpperCase();
+
+}
+
+
+document.getElementById(
+    "currentAvatar"
+).textContent =
+    initials(
+        profile.name
+    );
+
+
+/* =========================================================
+   PODIUM
+========================================================= */
+
+const podium =
+    document.getElementById(
+        "podium"
+    );
+
+
+const podiumUsers = [
+
+    users[1],
+
+    users[0],
+
+    users[2]
+
+];
+
+
+const podiumPositions = [
+
+    {
+        className:"second",
+        rank:"#2"
+    },
+
+    {
+        className:"first",
+        rank:"#1"
+    },
+
+    {
+        className:"third",
+        rank:"#3"
+    }
+
+];
+
+
+podiumUsers.forEach(
+    (user,index) => {
+
+        if(!user)
+            return;
+
+
+        const position =
+            podiumPositions[index];
+
+
+        const card =
+            document.createElement(
+                "div"
+            );
+
+
+        card.className =
+            "podium-card " +
+            position.className;
+
+
+        card.innerHTML = `
+
+            <div class="crown">
+
+                ${
+                    position.rank === "#1"
+                    ? "♛"
+                    : position.rank
+                }
+
+            </div>
+
+
+            <div class="podium-avatar">
+
+                ${initials(user.name)}
+
+            </div>
+
+
+            <div class="podium-rank">
+
+                ${position.rank}
+
+            </div>
+
+
+            <h3>
+                ${user.name}
+            </h3>
+
+
+            <p>
+                ${user.category}
+            </p>
+
+
+            <div class="podium-xp">
+
+                ${user.xp.toLocaleString()}
+                XP
+
+            </div>
+
+
+            <div class="podium-level">
+
+                Level ${user.level}
+                • 🔥 ${user.streak}
+
+            </div>
+
+        `;
+
+
+        podium.appendChild(
+            card
+        );
+
+    }
+);
+
+
+/* =========================================================
+   LEADERBOARD ROWS
+========================================================= */
+
+const rows =
+    document.getElementById(
+        "leaderboardRows"
+    );
+
+
+users.forEach(
+    (user,index) => {
+
+        const rank =
+            index + 1;
+
+
+        const row =
+            document.createElement(
+                "div"
+            );
+
+
+        row.className =
+            "player-row" +
+            (
+                user.current
+                ? " current"
+                : ""
+            );
+
+
+        const currentLevelXP =
+            (user.level - 1) * 500;
+
+
+        const nextLevelXP =
+            user.level * 500;
+
+
+        const levelProgress =
+            Math.min(
+                100,
+                Math.max(
+                    0,
+                    (
+                        (
+                            user.xp -
+                            currentLevelXP
+                        ) /
+                        (
+                            nextLevelXP -
+                            currentLevelXP
+                        )
+                    ) * 100
+                )
+            );
+
+
+        /*
+            Demo rank movement.
+            Current user gets a movement
+            indicator based on position.
+        */
+
+        let movement = "";
+
+
+        if(user.current){
+
+            if(rank <= 3){
+
+                movement =
+                    `<span class="rank-movement">
+                        ↑ CLIMBING
+                     </span>`;
+
+            }else{
+
+                movement =
+                    `<span class="rank-movement">
+                        →
+                     </span>`;
+
+            }
+
+        }
+
+
+        row.innerHTML = `
+
+            <div class="
+                rank
+                ${rank <= 3 ? "top" : ""}
+            ">
+
+                #${rank}
+
+            </div>
+
+
+            <div class="builder">
+
+                <div class="builder-avatar">
+
+                    ${initials(user.name)}
+
+                </div>
+
+
+                <div>
+
+                    <strong>
+
+                        ${user.name}
+
+                        ${movement}
+
+                    </strong>
+
+                    <small>
+                        ${user.category}
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="xp-value">
+
+                ${user.xp.toLocaleString()}
+                XP
+
+            </div>
+
+
+            <div class="level">
+
+                LVL ${user.level}
+
+            </div>
+
+
+            <div class="streak">
+
+                🔥 ${user.streak}
+
+            </div>
+
+
+            <div class="progress-cell">
+
+                <div class="progress-top">
+
+                    <span>
+                        Next level
+                    </span>
+
+                    <strong>
+                        ${Math.round(levelProgress)}%
+                    </strong>
+
+                </div>
+
+
+                <div class="progress-bar">
+
+                    <div
+                        class="progress-fill"
+                        style="
+                            width:
+                            ${levelProgress}%
+                        "
+                    ></div>
+
+                </div>
+
+            </div>
+
+        `;
+
+
+        rows.appendChild(
+            row
+        );
+
+    }
+);
+
+
+/* =========================================================
+   SAVE PROFILE
+========================================================= */
+
+localStorage.setItem(
+
+    "arenaProfile",
+
+    JSON.stringify(profile)
+
+);
+/* =========================================================
+   STEP 8.6 — MOBILE MENU
+========================================================= */
+
+const menuToggle =
+    document.getElementById(
+        "menuToggle"
+    );
+
+const navLinks =
+    document.getElementById(
+        "navLinks"
+    );
+
+
+if(menuToggle && navLinks){
+
+    menuToggle.addEventListener(
+        "click",
+        () => {
+
+            const isOpen =
+                navLinks.classList.toggle(
+                    "open"
+                );
+
+            menuToggle.classList.toggle(
+                "open",
+                isOpen
+            );
+
+            menuToggle.setAttribute(
+                "aria-expanded",
+                isOpen
+            );
+
+        }
+    );
+
+
+    /* Close after selecting a page */
+
+    navLinks
+        .querySelectorAll("a")
+        .forEach(link => {
+
+            link.addEventListener(
+                "click",
+                () => {
+
+                    navLinks.classList.remove(
+                        "open"
+                    );
+
+                    menuToggle.classList.remove(
+                        "open"
+                    );
+
+                    menuToggle.setAttribute(
+                        "aria-expanded",
+                        "false"
+                    );
+
+                }
+            );
+
+        });
+
+
+    /* Close if user clicks outside */
+
+    document.addEventListener(
+        "click",
+        event => {
+
+            if(
+                !menuToggle.contains(event.target) &&
+                !navLinks.contains(event.target)
+            ){
+
+                navLinks.classList.remove(
+                    "open"
+                );
+
+                menuToggle.classList.remove(
+                    "open"
+                );
+
+                menuToggle.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
+
+            }
+
+        }
+    );
+
+}
+/* =========================================================
+   ACTIVE PAGE
+========================================================= */
+
+const currentPage =
+    window.location.pathname
+        .split("/")
+        .pop() ||
+    "index.html";
+
+
+document
+    .querySelectorAll(
+        ".nav-links a"
+    )
+    .forEach(link => {
+
+        const linkPage =
+            link
+                .getAttribute("href")
+                .split("/")
+                .pop();
+
+
+        if(
+            linkPage ===
+            currentPage
+        ){
+
+            link.classList.add(
+                "active-link"
+            );
+
+        }
+
+    });
+</script>
+
+</body>
+
+</html>

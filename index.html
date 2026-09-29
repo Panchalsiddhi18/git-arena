@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="GIT Arena - Build. Submit. Level Up.">
+
+    <title>GIT Arena | Build. Submit. Level Up.</title>
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="css/style.css">
+    
+<style>
+    /* =========================================================
+   STEP 8.6 — MOBILE HAMBURGER NAVIGATION
+========================================================= */
+
+.arena-nav{
+    position:sticky;
+    top:0;
+    z-index:1000;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 7%;
+
+    min-height:72px;
+
+    background:#0d0f15;
+
+    border-bottom:1px solid #242832;
+}
+
+.arena-nav .logo{
+    font-size:22px;
+    font-weight:800;
+    letter-spacing:1px;
+    color:#b8ff3d;
+}
+
+.arena-nav .logo span{
+    color:#ffffff;
+}
+
+.arena-nav .nav-links{
+    display:flex;
+    align-items:center;
+    gap:28px;
+
+    list-style:none;
+}
+
+.arena-nav .nav-links a{
+    color:#a9afb9;
+    text-decoration:none;
+
+    font-size:14px;
+
+    transition:
+        color .25s ease;
+}
+
+.arena-nav .nav-links a:hover{
+    color:#b8ff3d;
+}
+
+
+/* =========================================================
+   HAMBURGER
+========================================================= */
+
+.menu-toggle{
+
+    display:none;
+
+    width:42px;
+    height:42px;
+
+    border:1px solid #303743;
+
+    border-radius:10px;
+
+    background:#151920;
+
+    cursor:pointer;
+
+    align-items:center;
+    justify-content:center;
+
+    flex-direction:column;
+
+    gap:5px;
+
+    transition:.25s;
+}
+
+.menu-toggle span{
+
+    display:block;
+
+    width:19px;
+    height:2px;
+
+    background:#b8ff3d;
+
+    border-radius:5px;
+
+    transition:
+        transform .25s ease,
+        opacity .25s ease;
+}
+
+.menu-toggle:hover{
+
+    border-color:#b8ff3d;
+
+    background:#1a2112;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:700px){
+
+    .arena-nav{
+
+        padding:
+            0 5%;
+
+        min-height:66px;
+
+    }
+
+    .menu-toggle{
+
+        display:flex;
+
+        position:relative;
+
+        z-index:1002;
+
+    }
+
+    .arena-nav .nav-links{
+
+        position:absolute;
+
+        top:66px;
+
+        left:0;
+
+        width:100%;
+
+        padding:15px 5% 20px;
+
+        background:#0d0f15;
+
+        border-bottom:
+            1px solid #292f39;
+
+        display:flex;
+
+        flex-direction:column;
+
+        align-items:stretch;
+
+        gap:4px;
+
+        opacity:0;
+
+        visibility:hidden;
+
+        transform:
+            translateY(-10px);
+
+        transition:
+            opacity .25s ease,
+            transform .25s ease,
+            visibility .25s ease;
+
+    }
+
+    .arena-nav .nav-links.open{
+
+        opacity:1;
+
+        visibility:visible;
+
+        transform:
+            translateY(0);
+
+    }
+
+    .arena-nav .nav-links li{
+        width:100%;
+    }
+
+    .arena-nav .nav-links a{
+
+        display:block;
+
+        width:100%;
+
+        padding:13px 15px;
+
+        border-radius:9px;
+
+        font-size:12px;
+
+    }
+
+    .arena-nav .nav-links a:hover{
+
+        background:#171b22;
+
+    }
+
+
+    /* Hamburger animation */
+
+    .menu-toggle.open span:nth-child(1){
+
+        transform:
+            translateY(7px)
+            rotate(45deg);
+
+    }
+
+    .menu-toggle.open span:nth-child(2){
+
+        opacity:0;
+
+    }
+
+    .menu-toggle.open span:nth-child(3){
+
+        transform:
+            translateY(-7px)
+            rotate(-45deg);
+
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL PHONE
+========================================================= */
+
+@media(max-width:380px){
+
+    .arena-nav .logo{
+
+        font-size:18px;
+
+    }
+
+    .menu-toggle{
+
+        width:38px;
+        height:38px;
+
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+
+        <a href="index.html" class="brand">
+
+            <div class="brand-mark">
+                &lt;/&gt;
+            </div>
+
+            <div>
+                <span class="brand-name">GIT ARENA</span>
+                <span class="brand-sub">CHARUSAT • GIT CLUB</span>
+            </div>
+
+        </a>
+
+        <nav class="arena-nav">
+
+    <div class="logo">
+        GIT <span>ARENA</span>
+    </div>
+
+    <button
+        class="menu-toggle"
+        id="menuToggle"
+        aria-label="Open navigation"
+        aria-expanded="false"
+    >
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <ul
+        class="nav-links"
+        id="navLinks"
+    >
+
+        <li>
+            <a href="index.html">
+                Home
+            </a>
+        </li>
+
+        <li>
+            <a href="challenges.html">
+                Challenges
+            </a>
+        </li>
+
+        <li>
+            <a href="leaderboard.html">
+                Leaderboard
+            </a>
+        </li>
+
+        <li>
+            <a href="profile.html">
+                Profile
+            </a>
+        </li>
+
+    </ul>
+
+</nav>
+
+        <div class="nav-actions">
+
+            <button class="icon-btn"
+                    id="themeToggle"
+                    aria-label="Toggle theme">
+                ◐
+            </button>
+
+            <a href="profile.html"
+               class="profile-mini">
+
+                <span>S</span>
+
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main>
+
+        <!-- HERO -->
+
+        <section class="hero">
+
+            <div class="hero-grid"></div>
+
+            <div class="hero-content">
+
+                <div class="eyebrow">
+
+                    <span class="status-dot"></span>
+
+                    GIT CLUB • CHALLENGE ARENA
+
+                </div>
+
+                <h1>
+                    BUILD.
+                    <span>SUBMIT.</span>
+                    LEVEL UP.
+                </h1>
+
+                <p class="hero-description">
+
+                    Turn ideas into working projects.
+                    Take on real-world challenges, earn XP,
+                    build your streak and climb the community leaderboard.
+
+                </p>
+
+                <div class="hero-buttons">
+
+                    <a href="challenges.html"
+                       class="primary-btn">
+
+                        Explore Challenges
+
+                        <span>→</span>
+
+                    </a>
+
+                    <a href="#how-it-works"
+                       class="secondary-btn">
+
+                        How it works
+
+                    </a>
+
+                </div>
+
+                <div class="hero-meta">
+
+                    <div>
+                        <strong>24+</strong>
+                        <span>Challenges</span>
+                    </div>
+
+                    <div>
+                        <strong>480+</strong>
+                        <span>Participants</span>
+                    </div>
+
+                    <div>
+                        <strong>12K</strong>
+                        <span>XP Earned</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- HERO SIDE CARD -->
+
+            <div class="hero-console">
+
+                <div class="console-top">
+
+                    <div class="console-dots">
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                    </div>
+
+                    <span>arena_status.sh</span>
+
+                </div>
+
+                <div class="console-body">
+
+                    <p class="terminal-line">
+                        <span class="terminal-green">$</span>
+                        git arena status
+                    </p>
+
+                    <div class="terminal-result">
+
+                        <div>
+                            <span>STATUS</span>
+                            <strong class="online">
+                                ● ONLINE
+                            </strong>
+                        </div>
+
+                        <div>
+                            <span>NEXT MISSION</span>
+                            <strong>
+                                #07
+                            </strong>
+                        </div>
+
+                        <div>
+                            <span>DIFFICULTY</span>
+                            <strong>
+                                MEDIUM
+                            </strong>
+                        </div>
+
+                    </div>
+
+                    <div class="terminal-progress">
+
+                        <div class="progress-label">
+
+                            <span>YOUR XP</span>
+
+                            <strong>
+                                1,980 / 2,500
+                            </strong>
+
+                        </div>
+
+                        <div class="progress-track">
+
+                            <div class="progress-fill"
+                                 style="width:79%">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <p class="terminal-command">
+                        <span class="terminal-green">$</span>
+                        next challenge --start
+                    </p>
+
+                    <div class="mission-preview">
+
+                        <div class="mission-icon">
+                            &lt;/&gt;
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Campus Connect
+                            </strong>
+
+                            <span>
+                                Build a student utility app
+                            </span>
+
+                        </div>
+
+                        <b>
+                            +250 XP
+                        </b>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- LIVE STATUS -->
+
+        <section class="status-strip">
+
+            <div class="live-status">
+
+                <span class="pulse"></span>
+
+                <strong>ARENA LIVE</strong>
+
+                <span>
+                    18 developers are currently competing
+                </span>
+
+            </div>
+
+            <div class="next-deadline">
+
+                <span>
+                    NEXT DEADLINE
+                </span>
+
+                <strong>
+                    02d 14h 38m
+                </strong>
+
+            </div>
+
+        </section>
+
+
+        <!-- FEATURED CHALLENGE -->
+
+        <section class="section featured-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        01 / FEATURED MISSION
+                    </span>
+
+                    <h2>
+                        Your next build
+                        <span>starts here.</span>
+                    </h2>
+
+                </div>
+
+                <a href="challenges.html"
+                   class="text-link">
+
+                    View all challenges →
+
+                </a>
+
+            </div>
+
+
+            <article class="featured-card">
+
+                <div class="featured-number">
+                    #07
+                </div>
+
+                <div class="featured-main">
+
+                    <div class="challenge-tags">
+
+                        <span class="tag purple">
+                            WEB DEVELOPMENT
+                        </span>
+
+                        <span class="tag medium">
+                            MEDIUM
+                        </span>
+
+                        <span class="tag active-tag">
+                            ACTIVE
+                        </span>
+
+                    </div>
+
+                    <h3>
+                        Campus Connect
+                    </h3>
+
+                    <p>
+                        Design and build a useful digital utility
+                        that solves a real problem faced by students
+                        on campus.
+                    </p>
+
+                    <div class="challenge-info">
+
+                        <div>
+                            <span>DEADLINE</span>
+                            <strong>05 OCT 2026</strong>
+                        </div>
+
+                        <div>
+                            <span>REWARD</span>
+                            <strong>250 XP</strong>
+                        </div>
+
+                        <div>
+                            <span>SUBMISSIONS</span>
+                            <strong>18 / 40</strong>
+                        </div>
+
+                    </div>
+
+                    <a href="challenges.html"
+                       class="primary-btn small">
+
+                        View Mission
+
+                        <span>→</span>
+
+                    </a>
+
+                </div>
+
+                <div class="featured-art">
+
+                    <div class="orbit orbit-one"></div>
+                    <div class="orbit orbit-two"></div>
+
+                    <div class="code-orb">
+
+                        <span>&lt;</span>
+
+                        <div>
+                            <b>BUILD</b>
+                            <small>something useful</small>
+                        </div>
+
+                        <span>/&gt;</span>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+        </section>
+
+
+        <!-- CHALLENGES -->
+
+        <section class="section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        02 / ACTIVE CHALLENGES
+                    </span>
+
+                    <h2>
+                        Pick your
+                        <span>mission.</span>
+                    </h2>
+
+                </div>
+
+                <a href="challenges.html"
+                   class="text-link">
+
+                    Explore arena →
+
+                </a>
+
+            </div>
+
+
+            <div class="challenge-grid">
+
+                <!-- CARD 1 -->
+
+                <article class="challenge-card">
+
+                    <div class="card-top">
+
+                        <span class="challenge-number">
+                            #08
+                        </span>
+
+                        <span class="difficulty easy">
+                            EASY
+                        </span>
+
+                    </div>
+
+                    <div class="card-icon green">
+                        { }
+                    </div>
+
+                    <span class="category">
+                        JAVASCRIPT
+                    </span>
+
+                    <h3>
+                        Debug Rush
+                    </h3>
+
+                    <p>
+                        Find and fix hidden bugs in a
+                        student management interface.
+                    </p>
+
+                    <div class="card-footer">
+
+                        <span>
+                            100 XP
+                        </span>
+
+                        <a href="challenges.html">
+                            →
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <!-- CARD 2 -->
+
+                <article class="challenge-card featured-small">
+
+                    <div class="card-top">
+
+                        <span class="challenge-number">
+                            #09
+                        </span>
+
+                        <span class="difficulty hard">
+                            HARD
+                        </span>
+
+                    </div>
+
+                    <div class="card-icon orange">
+                        AI
+                    </div>
+
+                    <span class="category">
+                        AI / ML
+                    </span>
+
+                    <h3>
+                        Smart Campus
+                    </h3>
+
+                    <p>
+                        Build an intelligent solution that
+                        improves campus life.
+                    </p>
+
+                    <div class="card-footer">
+
+                        <span>
+                            400 XP
+                        </span>
+
+                        <a href="challenges.html">
+                            →
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <!-- CARD 3 -->
+
+                <article class="challenge-card">
+
+                    <div class="card-top">
+
+                        <span class="challenge-number">
+                            #10
+                        </span>
+
+                        <span class="difficulty medium">
+                            MEDIUM
+                        </span>
+
+                    </div>
+
+                    <div class="card-icon blue">
+                        &lt;/&gt;
+                    </div>
+
+                    <span class="category">
+                        FRONTEND
+                    </span>
+
+                    <h3>
+                        Interface Zero
+                    </h3>
+
+                    <p>
+                        Transform a rough wireframe into
+                        a polished responsive interface.
+                    </p>
+
+                    <div class="card-footer">
+
+                        <span>
+                            250 XP
+                        </span>
+
+                        <a href="challenges.html">
+                            →
+                        </a>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- HOW IT WORKS -->
+
+        <section class="section how-section"
+                 id="how-it-works">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        03 / HOW IT WORKS
+                    </span>
+
+                    <h2>
+                        From idea to
+                        <span>impact.</span>
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="steps">
+
+                <div class="step">
+
+                    <span>01</span>
+
+                    <div class="step-icon">
+                        ◇
+                    </div>
+
+                    <h3>
+                        Choose
+                    </h3>
+
+                    <p>
+                        Pick a challenge that matches
+                        your skills and interests.
+                    </p>
+
+                </div>
+
+
+                <div class="step">
+
+                    <span>02</span>
+
+                    <div class="step-icon">
+                        ◇
+                    </div>
+
+                    <h3>
+                        Build
+                    </h3>
+
+                    <p>
+                        Turn the brief into a working
+                        solution before the deadline.
+                    </p>
+
+                </div>
+
+
+                <div class="step">
+
+                    <span>03</span>
+
+                    <div class="step-icon">
+                        ◇
+                    </div>
+
+                    <h3>
+                        Submit
+                    </h3>
+
+                    <p>
+                        Share your solution and mark
+                        your mission complete.
+                    </p>
+
+                </div>
+
+
+                <div class="step">
+
+                    <span>04</span>
+
+                    <div class="step-icon">
+                        ★
+                    </div>
+
+                    <h3>
+                        Level Up
+                    </h3>
+
+                    <p>
+                        Earn XP, unlock badges and
+                        climb the leaderboard.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- COMMUNITY -->
+
+        <section class="section community-section">
+
+            <div class="community-card">
+
+                <div>
+
+                    <span class="section-label">
+                        THE COMMUNITY
+                    </span>
+
+                    <h2>
+                        Don't just
+                        <span>learn.</span>
+                        Build.
+                    </h2>
+
+                    <p>
+                        Every challenge is an opportunity
+                        to create something real, learn
+                        something new and prove what you can do.
+                    </p>
+
+                </div>
+
+                <a href="challenges.html"
+                   class="primary-btn">
+
+                    Enter the Arena
+
+                    <span>→</span>
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+
+        <div class="footer-brand">
+
+            <div class="brand-mark">
+                &lt;/&gt;
+            </div>
+
+            <div>
+
+                <strong>
+                    GIT ARENA
+                </strong>
+
+                <span>
+                    CHARUSAT GIT CLUB
+                </span>
+
+            </div>
+
+        </div>
+
+        <p>
+            Build. Collaborate. Ship.
+        </p>
+
+        <span>
+            © 2026 GIT Club CHARUSAT
+        </span>
+
+    </footer>
+
+<script>
+    /* =========================================================
+   STEP 8.6 — MOBILE MENU
+========================================================= */
+
+const menuToggle =
+    document.getElementById(
+        "menuToggle"
+    );
+
+const navLinks =
+    document.getElementById(
+        "navLinks"
+    );
+
+
+if(menuToggle && navLinks){
+
+    menuToggle.addEventListener(
+        "click",
+        () => {
+
+            const isOpen =
+                navLinks.classList.toggle(
+                    "open"
+                );
+
+            menuToggle.classList.toggle(
+                "open",
+                isOpen
+            );
+
+            menuToggle.setAttribute(
+                "aria-expanded",
+                isOpen
+            );
+
+        }
+    );
+
+
+    /* Close after selecting a page */
+
+    navLinks
+        .querySelectorAll("a")
+        .forEach(link => {
+
+            link.addEventListener(
+                "click",
+                () => {
+
+                    navLinks.classList.remove(
+                        "open"
+                    );
+
+                    menuToggle.classList.remove(
+                        "open"
+                    );
+
+                    menuToggle.setAttribute(
+                        "aria-expanded",
+                        "false"
+                    );
+
+                }
+            );
+
+        });
+
+
+    /* Close if user clicks outside */
+
+    document.addEventListener(
+        "click",
+        event => {
+
+            if(
+                !menuToggle.contains(event.target) &&
+                !navLinks.contains(event.target)
+            ){
+
+                navLinks.classList.remove(
+                    "open"
+                );
+
+                menuToggle.classList.remove(
+                    "open"
+                );
+
+                menuToggle.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
+
+            }
+
+        }
+    );
+
+}
+/* =========================================================
+   ACTIVE PAGE
+========================================================= */
+
+const currentPage =
+    window.location.pathname
+        .split("/")
+        .pop() ||
+    "index.html";
+
+
+document
+    .querySelectorAll(
+        ".nav-links a"
+    )
+    .forEach(link => {
+
+        const linkPage =
+            link
+                .getAttribute("href")
+                .split("/")
+                .pop();
+
+
+        if(
+            linkPage ===
+            currentPage
+        ){
+
+            link.classList.add(
+                "active-link"
+            );
+
+        }
+
+    });
+</script>
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+
+</body>
+
+</html>

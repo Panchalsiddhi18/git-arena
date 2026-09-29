@@ -1,0 +1,5149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>GIT Arena | Challenges</title>
+
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#08090d;
+    color:#f5f7fa;
+    line-height:1.6;
+}
+
+button,
+input{
+    font-family:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+nav{
+    height:72px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 7%;
+
+    background:#0d0f15;
+
+    border-bottom:1px solid #242832;
+
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+.logo{
+    font-size:22px;
+    font-weight:800;
+    color:#b8ff3d;
+    letter-spacing:1px;
+}
+
+.logo span{
+    color:#ffffff;
+}
+
+.nav-links{
+    display:flex;
+    gap:28px;
+    list-style:none;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:#a9afb9;
+    font-size:14px;
+    transition:.25s;
+}
+
+.nav-links a:hover,
+.nav-links .active-link{
+    color:#b8ff3d;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+    padding:75px 7% 45px;
+
+    background:
+        radial-gradient(
+            circle at 80% 20%,
+            rgba(143,70,255,.16),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 15% 30%,
+            rgba(184,255,61,.09),
+            transparent 30%
+        );
+}
+
+.eyebrow{
+    color:#b8ff3d;
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:2px;
+    margin-bottom:12px;
+}
+
+.hero h1{
+    font-size:clamp(38px,6vw,72px);
+    line-height:1;
+    max-width:850px;
+    margin-bottom:20px;
+}
+
+.hero h1 span{
+    color:#b8ff3d;
+}
+
+.hero p{
+    color:#9da4af;
+    max-width:700px;
+    font-size:16px;
+}
+
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+
+.container{
+    width:86%;
+    max-width:1400px;
+    margin:auto;
+}
+
+
+/* =========================================================
+   SEARCH / FILTER
+========================================================= */
+
+.controls{
+    margin-top:25px;
+
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.search{
+    flex:1;
+    min-width:240px;
+
+    background:#11141b;
+
+    border:1px solid #292e38;
+
+    color:white;
+
+    padding:14px 16px;
+
+    border-radius:10px;
+
+    outline:none;
+}
+
+.search:focus{
+    border-color:#b8ff3d;
+}
+
+.filter{
+    padding:14px 18px;
+
+    background:#11141b;
+
+    color:#c7ccd4;
+
+    border:1px solid #292e38;
+
+    border-radius:10px;
+
+    outline:none;
+}
+
+
+/* =========================================================
+   STATS
+========================================================= */
+
+.stats{
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:16px;
+
+    margin:35px 0;
+}
+
+.stat{
+    background:#11141b;
+
+    border:1px solid #292e38;
+
+    padding:20px;
+
+    border-radius:14px;
+
+    transition:.25s;
+}
+
+.stat:hover{
+    transform:translateY(-3px);
+    border-color:#3c4350;
+}
+
+.stat small{
+    display:block;
+
+    color:#7f8794;
+
+    font-size:11px;
+
+    text-transform:uppercase;
+
+    letter-spacing:1px;
+
+    margin-bottom:8px;
+}
+
+.stat strong{
+    font-size:28px;
+
+    color:#ffffff;
+}
+
+
+/* =========================================================
+   MISSION INTELLIGENCE
+========================================================= */
+
+.recommendation{
+
+    margin:35px 0;
+
+    padding:26px;
+
+    border-radius:18px;
+
+    border:1px solid #343c4a;
+
+    background:
+        radial-gradient(
+            circle at 85% 15%,
+            rgba(142,68,255,.18),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #11151d,
+            #0c0f15
+        );
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:30px;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.recommendation::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+    top:0;
+
+    width:4px;
+    height:100%;
+
+    background:#b8ff3d;
+}
+
+.recommend-main{
+    position:relative;
+    z-index:1;
+}
+
+.intel-label{
+
+    display:inline-block;
+
+    color:#b8ff3d;
+
+    font-size:11px;
+
+    font-weight:800;
+
+    letter-spacing:1.8px;
+
+    margin-bottom:9px;
+}
+
+.recommendation h2{
+
+    font-size:27px;
+
+    margin-bottom:7px;
+}
+
+.recommendation p{
+
+    color:#929aa7;
+
+    max-width:700px;
+
+    font-size:14px;
+
+    margin-bottom:14px;
+}
+
+.recommend-meta{
+
+    display:flex;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+}
+
+.chip{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    padding:6px 10px;
+
+    border-radius:999px;
+
+    font-size:11px;
+
+    background:#191d26;
+
+    border:1px solid #303641;
+
+    color:#b9c0cb;
+}
+
+.recommend-side{
+
+    min-width:190px;
+
+    text-align:right;
+
+    position:relative;
+
+    z-index:1;
+}
+
+.recommend-xp{
+
+    display:block;
+
+    color:#b8ff3d;
+
+    font-size:24px;
+
+    font-weight:800;
+
+    margin-bottom:10px;
+}
+
+.primary-btn{
+
+    border:none;
+
+    background:#b8ff3d;
+
+    color:#08090d;
+
+    padding:12px 17px;
+
+    border-radius:9px;
+
+    font-size:12px;
+
+    font-weight:800;
+
+    letter-spacing:.5px;
+
+    transition:.25s;
+}
+
+.primary-btn:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 8px 25px
+        rgba(184,255,61,.15);
+}
+
+.primary-btn:active{
+    transform:scale(.97);
+}
+
+
+/* =========================================================
+   SECTION TITLE
+========================================================= */
+
+.section-title{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:end;
+
+    gap:20px;
+
+    margin:55px 0 22px;
+}
+
+.section-title h2{
+    font-size:28px;
+}
+
+.section-title p{
+    color:#737b87;
+    font-size:13px;
+}
+
+
+/* =========================================================
+   CHALLENGE GRID
+========================================================= */
+
+.grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:18px;
+
+    padding-bottom:50px;
+}
+
+.card{
+
+    background:#11141b;
+
+    border:1px solid #292e38;
+
+    border-radius:16px;
+
+    padding:22px;
+
+    transition:.3s;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.card:hover{
+
+    transform:translateY(-5px);
+
+    border-color:#46505e;
+
+    box-shadow:
+        0 15px 35px
+        rgba(0,0,0,.25);
+}
+
+.card.completed{
+
+    opacity:.72;
+
+    border-color:
+        rgba(184,255,61,.25);
+}
+
+.card-top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:20px;
+}
+
+.category{
+
+    font-size:10px;
+
+    text-transform:uppercase;
+
+    letter-spacing:1px;
+
+    color:#b8ff3d;
+
+    font-weight:800;
+}
+
+.difficulty{
+
+    font-size:10px;
+
+    color:#969eaa;
+
+    padding:5px 8px;
+
+    border:1px solid #303641;
+
+    border-radius:999px;
+}
+
+.card h3{
+
+    font-size:20px;
+
+    margin-bottom:8px;
+}
+
+.card p{
+
+    color:#818996;
+
+    font-size:13px;
+
+    min-height:62px;
+}
+
+.card-bottom{
+
+    margin-top:22px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+}
+
+.xp{
+
+    color:#b8ff3d;
+
+    font-size:13px;
+
+    font-weight:800;
+}
+
+.card-btn{
+
+    border:1px solid #39414e;
+
+    background:#171b23;
+
+    color:#e5e9ee;
+
+    padding:9px 12px;
+
+    border-radius:8px;
+
+    font-size:11px;
+
+    font-weight:700;
+
+    transition:.2s;
+}
+
+.card-btn:hover{
+
+    border-color:#b8ff3d;
+
+    color:#b8ff3d;
+}
+
+.completed-label{
+
+    color:#b8ff3d;
+
+    font-size:11px;
+
+    font-weight:800;
+
+    letter-spacing:.7px;
+}
+
+
+/* =========================================================
+   ACTIVE MISSION
+========================================================= */
+
+.active{
+
+    margin:20px 0 60px;
+
+    padding:30px;
+
+    border-radius:18px;
+
+    border:1px solid #303742;
+
+    background:#0f1218;
+}
+
+.active-head{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-start;
+
+    gap:20px;
+
+    margin-bottom:25px;
+}
+
+.active-label{
+
+    color:#b8ff3d;
+
+    font-size:10px;
+
+    font-weight:800;
+
+    letter-spacing:1.5px;
+
+    margin-bottom:8px;
+
+    display:block;
+}
+
+.active h2{
+
+    font-size:28px;
+
+    margin-bottom:7px;
+}
+
+.active-head p{
+
+    color:#7f8792;
+
+    font-size:13px;
+}
+
+.close-btn{
+
+    background:transparent;
+
+    border:1px solid #343b46;
+
+    color:#8f97a3;
+
+    width:36px;
+
+    height:36px;
+
+    border-radius:50%;
+
+    font-size:18px;
+}
+
+.close-btn:hover{
+
+    color:white;
+
+    border-color:#596372;
+}
+
+
+/* =========================================================
+   WORKSPACE
+========================================================= */
+
+.workspace{
+
+    display:grid;
+
+    grid-template-columns:
+        1.3fr .7fr;
+
+    gap:18px;
+}
+
+.work-card{
+
+    background:#13171f;
+
+    border:1px solid #292f3a;
+
+    border-radius:14px;
+
+    padding:22px;
+}
+
+.work-card h3{
+
+    font-size:15px;
+
+    margin-bottom:13px;
+}
+
+.work-card p{
+
+    color:#8d95a1;
+
+    font-size:13px;
+
+    margin-bottom:15px;
+}
+
+.checkpoint{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:11px;
+
+    border:1px solid #2b313c;
+
+    border-radius:9px;
+
+    margin-bottom:9px;
+
+    color:#adb4be;
+
+    font-size:12px;
+}
+
+.checkpoint input{
+
+    accent-color:#b8ff3d;
+
+}
+
+.progress-wrap{
+
+    margin-top:20px;
+}
+
+.progress-bar{
+
+    height:8px;
+
+    background:#252a33;
+
+    border-radius:999px;
+
+    overflow:hidden;
+}
+
+.progress{
+
+    height:100%;
+
+    width:33%;
+
+    background:#b8ff3d;
+
+    transition:.35s;
+}
+
+.progress-text{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    color:#737b87;
+
+    font-size:10px;
+
+    margin-top:7px;
+}
+
+.url-input{
+
+    width:100%;
+
+    padding:12px;
+
+    background:#0c0f14;
+
+    color:white;
+
+    border:1px solid #2e3540;
+
+    border-radius:8px;
+
+    margin-bottom:10px;
+
+    outline:none;
+}
+
+.url-input:focus{
+
+    border-color:#b8ff3d;
+}
+
+.submit-btn{
+
+    width:100%;
+
+    padding:13px;
+
+    background:#b8ff3d;
+
+    border:none;
+
+    border-radius:9px;
+
+    font-weight:800;
+
+    color:#090b0f;
+
+    margin-top:8px;
+}
+
+.submit-btn:disabled{
+
+    opacity:.35;
+
+    cursor:not-allowed;
+}
+
+
+/* =========================================================
+   SKILLS
+========================================================= */
+
+.chips{
+
+    display:flex;
+
+    gap:7px;
+
+    flex-wrap:wrap;
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.modal{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.72);
+
+    backdrop-filter:blur(8px);
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:20px;
+
+    z-index:2000;
+}
+
+.modal.show{
+
+    display:flex;
+}
+
+.modal-box{
+
+    width:100%;
+
+    max-width:620px;
+
+    max-height:90vh;
+
+    overflow:auto;
+
+    background:#11141b;
+
+    border:1px solid #353c48;
+
+    border-radius:18px;
+
+    padding:28px;
+
+    position:relative;
+}
+
+.modal-box h2{
+
+    font-size:30px;
+
+    margin-bottom:10px;
+}
+
+.modal-box p{
+
+    color:#9098a5;
+
+    font-size:14px;
+
+    margin-bottom:20px;
+}
+
+.modal-close{
+
+    position:absolute;
+
+    top:17px;
+
+    right:17px;
+
+    width:35px;
+
+    height:35px;
+
+    border-radius:50%;
+
+    border:1px solid #343b46;
+
+    background:transparent;
+
+    color:#a0a8b4;
+
+    font-size:18px;
+}
+
+.modal-close:hover{
+
+    color:white;
+}
+
+.intel{
+
+    padding:17px;
+
+    background:#171b23;
+
+    border:1px solid #2e3540;
+
+    border-radius:12px;
+
+    margin-bottom:20px;
+}
+
+.intel strong{
+
+    display:block;
+
+    color:#b8ff3d;
+
+    font-size:11px;
+
+    letter-spacing:1px;
+
+    margin-bottom:7px;
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+.toast{
+
+    position:fixed;
+
+    right:25px;
+
+    bottom:25px;
+
+    background:#151922;
+
+    border:1px solid #3a424e;
+
+    color:white;
+
+    padding:14px 17px;
+
+    border-radius:10px;
+
+    transform:translateY(120px);
+
+    opacity:0;
+
+    transition:.35s;
+
+    z-index:3000;
+
+    font-size:13px;
+}
+
+.toast.show{
+
+    transform:translateY(0);
+
+    opacity:1;
+}
+
+
+/* =========================================================
+   BADGE MODAL
+========================================================= */
+
+.badge{
+
+    text-align:center;
+
+    padding:15px;
+}
+
+.badge-icon{
+
+    width:65px;
+
+    height:65px;
+
+    border-radius:50%;
+
+    margin:auto auto 14px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#1c2315;
+
+    border:1px solid #b8ff3d;
+
+    color:#b8ff3d;
+
+    font-size:27px;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer{
+
+    border-top:1px solid #242832;
+
+    padding:30px 7%;
+
+    color:#69717d;
+
+    font-size:12px;
+
+    text-align:center;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:1000px){
+
+    .grid{
+
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .stats{
+
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .workspace{
+
+        grid-template-columns:1fr;
+    }
+
+    .recommendation{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+    }
+
+    .recommend-side{
+
+        text-align:left;
+    }
+}
+
+@media(max-width:700px){
+
+    nav{
+
+        padding:0 5%;
+    }
+
+    .nav-links{
+
+        gap:13px;
+    }
+
+    .nav-links a{
+
+        font-size:11px;
+    }
+
+    .hero{
+
+        padding:55px 5% 35px;
+    }
+
+    .container{
+
+        width:90%;
+    }
+
+    .grid{
+
+        grid-template-columns:1fr;
+    }
+
+    .stats{
+
+        grid-template-columns:1fr 1fr;
+    }
+
+    .active{
+
+        padding:20px;
+    }
+
+    .active-head{
+
+        flex-direction:column;
+    }
+
+    .section-title{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+    }
+}
+
+@media(max-width:480px){
+
+    .stats{
+
+        grid-template-columns:1fr;
+    }
+
+    .hero h1{
+
+        font-size:42px;
+    }
+
+    .nav-links{
+
+        gap:8px;
+    }
+
+    .nav-links a{
+
+        font-size:10px;
+    }
+}
+/* =========================================================
+   STEP 8.1 — FINAL UI POLISH
+========================================================= */
+
+/* Smooth page appearance */
+body {
+    animation: pageFadeIn 0.7s ease;
+}
+
+@keyframes pageFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Hero animation */
+.hero .eyebrow {
+    animation: slideDown 0.7s ease;
+}
+
+.hero h1 {
+    animation: slideUp 0.8s ease;
+}
+
+.hero p {
+    animation: slideUp 1s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Stats entrance */
+.stat {
+    animation: statAppear 0.6s ease both;
+}
+
+.stat:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.stat:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.stat:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.stat:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+@keyframes statAppear {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Recommendation glow */
+.recommendation {
+    animation: recommendationAppear 0.8s ease;
+}
+
+@keyframes recommendationAppear {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Mission cards */
+.card {
+    animation: cardAppear 0.5s ease both;
+}
+
+@keyframes cardAppear {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Mission card hover */
+.card:hover {
+    transform: translateY(-7px) scale(1.01);
+}
+
+
+/* Buttons */
+.primary-btn,
+.card-btn,
+.submit-btn {
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.primary-btn:hover,
+.submit-btn:hover {
+    transform: translateY(-2px);
+}
+
+.primary-btn:active,
+.card-btn:active,
+.submit-btn:active {
+    transform: scale(0.96);
+}
+
+
+/* XP pulse */
+.recommend-xp {
+    animation: xpPulse 2s infinite;
+}
+
+@keyframes xpPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+
+/* Mission progress animation */
+.progress {
+    transition:
+        width 0.6s cubic-bezier(.22,1,.36,1);
+}
+
+
+/* Chips */
+.chip {
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.chip:hover {
+    transform: translateY(-2px);
+    border-color: #b8ff3d;
+}
+
+
+/* Active mission */
+.active {
+    animation: activeMissionAppear 0.5s ease;
+}
+
+@keyframes activeMissionAppear {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Modal */
+.modal-box {
+    animation: modalAppear 0.3s ease;
+}
+
+@keyframes modalAppear {
+    from {
+        opacity: 0;
+        transform: scale(0.94) translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+
+/* Toast */
+.toast {
+    box-shadow:
+        0 10px 35px rgba(0, 0, 0, 0.35);
+}
+
+
+/* Focus accessibility */
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+    outline: 2px solid #b8ff3d;
+    outline-offset: 3px;
+}
+
+
+/* Reduce animation for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+}
+/* =========================================================
+   STEP 8.2 — XP CELEBRATION
+========================================================= */
+
+.xp-celebration {
+
+    position:fixed;
+
+    inset:0;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:20px;
+
+    background:rgba(0,0,0,.82);
+
+    backdrop-filter:blur(12px);
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transition:
+        opacity .3s ease,
+        visibility .3s ease;
+
+    z-index:5000;
+}
+
+.xp-celebration.show {
+
+    opacity:1;
+
+    visibility:visible;
+}
+
+
+.xp-celebration-box {
+
+    width:100%;
+
+    max-width:480px;
+
+    padding:42px 30px;
+
+    text-align:center;
+
+    border-radius:22px;
+
+    border:1px solid #46505d;
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(184,255,61,.12),
+            transparent 45%
+        ),
+        #11141b;
+
+    box-shadow:
+        0 30px 100px
+        rgba(0,0,0,.55);
+
+    transform:
+        scale(.8)
+        translateY(30px);
+
+    transition:
+        transform .45s
+        cubic-bezier(.22,1,.36,1);
+}
+
+.xp-celebration.show
+.xp-celebration-box {
+
+    transform:
+        scale(1)
+        translateY(0);
+}
+
+
+.xp-stars {
+
+    width:80px;
+
+    height:80px;
+
+    margin:0 auto 18px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:50%;
+
+    border:1px solid #b8ff3d;
+
+    background:#18200f;
+
+    color:#b8ff3d;
+
+    font-size:38px;
+
+    animation:
+        celebrationPulse 1.4s
+        infinite;
+}
+
+
+@keyframes celebrationPulse {
+
+    0%,
+    100% {
+
+        transform:scale(1);
+
+        box-shadow:
+            0 0 0
+            rgba(184,255,61,0);
+
+    }
+
+    50% {
+
+        transform:scale(1.08);
+
+        box-shadow:
+            0 0 35px
+            rgba(184,255,61,.18);
+
+    }
+
+}
+
+
+.celebration-label {
+
+    color:#b8ff3d;
+
+    font-size:11px;
+
+    font-weight:800;
+
+    letter-spacing:2px;
+
+    margin-bottom:8px;
+}
+
+
+.xp-celebration-box h2 {
+
+    font-size:48px;
+
+    line-height:1;
+
+    margin-bottom:12px;
+
+    color:#ffffff;
+}
+
+
+.xp-celebration-box h2 span {
+
+    color:#b8ff3d;
+}
+
+
+.xp-celebration-box p {
+
+    color:#929aa7;
+
+    font-size:14px;
+
+    margin-bottom:25px;
+}
+
+
+.level-result {
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:22px;
+
+    margin-bottom:28px;
+
+    padding:18px;
+
+    background:#171b23;
+
+    border:1px solid #2d3440;
+
+    border-radius:14px;
+}
+
+
+.level-result div {
+
+    min-width:75px;
+}
+
+
+.level-result small {
+
+    display:block;
+
+    color:#737b87;
+
+    font-size:9px;
+
+    letter-spacing:1px;
+
+    margin-bottom:4px;
+}
+
+
+.level-result strong {
+
+    font-size:26px;
+
+    color:#ffffff;
+}
+
+
+.level-result span {
+
+    color:#b8ff3d;
+
+    font-size:22px;
+}
+
+
+@media(max-width:480px) {
+
+    .xp-celebration-box {
+
+        padding:35px 20px;
+    }
+
+    .xp-celebration-box h2 {
+
+        font-size:42px;
+    }
+
+
+}
+/* =========================================================
+   STEP 8.5 — MOBILE RESPONSIVE POLISH
+========================================================= */
+
+@media (max-width: 768px){
+
+    body{
+        overflow-x:hidden;
+    }
+
+    nav{
+        height:auto;
+        min-height:68px;
+        padding:14px 5%;
+        gap:15px;
+    }
+
+    .nav-links{
+        gap:14px;
+        flex-wrap:wrap;
+        justify-content:flex-end;
+    }
+
+    .nav-links a{
+        font-size:10px;
+    }
+
+    .container{
+        width:90%;
+    }
+
+    .hero{
+        padding:55px 0 35px;
+    }
+
+    .hero h1{
+        font-size:clamp(40px,12vw,58px);
+        line-height:.95;
+    }
+
+    .hero p{
+        font-size:13px;
+    }
+
+    /* Stats */
+
+    .stats-grid{
+        grid-template-columns:repeat(2,1fr) !important;
+        gap:10px;
+    }
+
+    .stat-card{
+        padding:15px !important;
+    }
+
+    /* Challenge cards */
+
+    .challenge-grid{
+        grid-template-columns:1fr !important;
+        gap:14px;
+    }
+
+    .challenge-card{
+        padding:20px !important;
+    }
+
+    /* Search */
+
+    .search-filter,
+    .filter-bar{
+        flex-direction:column !important;
+        align-items:stretch !important;
+        gap:10px;
+    }
+
+    input,
+    select{
+        width:100%;
+    }
+
+    /* Recommendation */
+
+    .recommendation-card{
+        padding:20px !important;
+    }
+
+    /* Active mission */
+
+    .active-mission{
+        padding:20px !important;
+    }
+
+    .mission-header{
+        flex-direction:column !important;
+        align-items:flex-start !important;
+        gap:12px;
+    }
+
+    /* Mission checkpoints */
+
+    .checkpoint-list{
+        grid-template-columns:1fr !important;
+    }
+
+    /* Mission actions */
+
+    .mission-actions{
+        flex-direction:column !important;
+        align-items:stretch !important;
+    }
+
+    .mission-actions button{
+        width:100%;
+    }
+
+    /* Modals */
+
+    .modal-content{
+        width:92% !important;
+        max-height:88vh;
+        overflow-y:auto;
+        padding:22px !important;
+    }
+
+    /* XP celebration */
+
+    .xp-celebration-box{
+        width:90%;
+        padding:30px 20px;
+    }
+
+    .xp-celebration-box h2{
+        font-size:42px;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL PHONES
+========================================================= */
+
+@media (max-width:480px){
+
+    nav{
+        align-items:flex-start;
+    }
+
+    .logo{
+        font-size:18px;
+        white-space:nowrap;
+    }
+
+    .nav-links{
+        gap:8px;
+    }
+
+    .nav-links a{
+        font-size:9px;
+    }
+
+    .hero{
+        padding-top:40px;
+    }
+
+    .hero h1{
+        font-size:40px;
+    }
+
+    .stats-grid{
+        grid-template-columns:1fr 1fr !important;
+    }
+
+    .stat-card strong{
+        font-size:20px !important;
+    }
+
+    .challenge-card h3{
+        font-size:18px !important;
+    }
+
+    .primary-btn,
+    .secondary-btn{
+        width:100%;
+        padding:13px 16px;
+    }
+
+}
+
+
+/* =========================================================
+   TOUCH DEVICE IMPROVEMENT
+========================================================= */
+
+@media (hover:none){
+
+    .challenge-card:hover{
+        transform:none;
+    }
+
+    button:hover{
+        transform:none;
+    }
+
+    .mission-card:hover{
+        transform:none;
+    }
+
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+@media (prefers-reduced-motion:reduce){
+
+    *,
+    *::before,
+    *::after{
+        animation-duration:.01ms !important;
+        animation-iteration-count:1 !important;
+        transition-duration:.01ms !important;
+        scroll-behavior:auto !important;
+    }
+
+}
+/* =========================================================
+   STEP 8.6 — MOBILE HAMBURGER NAVIGATION
+========================================================= */
+
+.arena-nav{
+    position:sticky;
+    top:0;
+    z-index:1000;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 7%;
+
+    min-height:72px;
+
+    background:#0d0f15;
+
+    border-bottom:1px solid #242832;
+}
+
+.arena-nav .logo{
+    font-size:22px;
+    font-weight:800;
+    letter-spacing:1px;
+    color:#b8ff3d;
+}
+
+.arena-nav .logo span{
+    color:#ffffff;
+}
+
+.arena-nav .nav-links{
+    display:flex;
+    align-items:center;
+    gap:28px;
+
+    list-style:none;
+}
+
+.arena-nav .nav-links a{
+    color:#a9afb9;
+    text-decoration:none;
+
+    font-size:14px;
+
+    transition:
+        color .25s ease;
+}
+
+.arena-nav .nav-links a:hover{
+    color:#b8ff3d;
+}
+
+
+/* =========================================================
+   HAMBURGER
+========================================================= */
+
+.menu-toggle{
+
+    display:none;
+
+    width:42px;
+    height:42px;
+
+    border:1px solid #303743;
+
+    border-radius:10px;
+
+    background:#151920;
+
+    cursor:pointer;
+
+    align-items:center;
+    justify-content:center;
+
+    flex-direction:column;
+
+    gap:5px;
+
+    transition:.25s;
+}
+
+.menu-toggle span{
+
+    display:block;
+
+    width:19px;
+    height:2px;
+
+    background:#b8ff3d;
+
+    border-radius:5px;
+
+    transition:
+        transform .25s ease,
+        opacity .25s ease;
+}
+
+.menu-toggle:hover{
+
+    border-color:#b8ff3d;
+
+    background:#1a2112;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:700px){
+
+    .arena-nav{
+
+        padding:
+            0 5%;
+
+        min-height:66px;
+
+    }
+
+    .menu-toggle{
+
+        display:flex;
+
+        position:relative;
+
+        z-index:1002;
+
+    }
+
+    .arena-nav .nav-links{
+
+        position:absolute;
+
+        top:66px;
+
+        left:0;
+
+        width:100%;
+
+        padding:15px 5% 20px;
+
+        background:#0d0f15;
+
+        border-bottom:
+            1px solid #292f39;
+
+        display:flex;
+
+        flex-direction:column;
+
+        align-items:stretch;
+
+        gap:4px;
+
+        opacity:0;
+
+        visibility:hidden;
+
+        transform:
+            translateY(-10px);
+
+        transition:
+            opacity .25s ease,
+            transform .25s ease,
+            visibility .25s ease;
+
+    }
+
+    .arena-nav .nav-links.open{
+
+        opacity:1;
+
+        visibility:visible;
+
+        transform:
+            translateY(0);
+
+    }
+
+    .arena-nav .nav-links li{
+        width:100%;
+    }
+
+    .arena-nav .nav-links a{
+
+        display:block;
+
+        width:100%;
+
+        padding:13px 15px;
+
+        border-radius:9px;
+
+        font-size:12px;
+
+    }
+
+    .arena-nav .nav-links a:hover{
+
+        background:#171b22;
+
+    }
+
+
+    /* Hamburger animation */
+
+    .menu-toggle.open span:nth-child(1){
+
+        transform:
+            translateY(7px)
+            rotate(45deg);
+
+    }
+
+    .menu-toggle.open span:nth-child(2){
+
+        opacity:0;
+
+    }
+
+    .menu-toggle.open span:nth-child(3){
+
+        transform:
+            translateY(-7px)
+            rotate(-45deg);
+
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL PHONE
+========================================================= */
+
+@media(max-width:380px){
+
+    .arena-nav .logo{
+
+        font-size:18px;
+
+    }
+
+    .menu-toggle{
+
+        width:38px;
+        height:38px;
+
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
+
+<nav class="arena-nav">
+
+    <div class="logo">
+        GIT <span>ARENA</span>
+    </div>
+
+    <button
+        class="menu-toggle"
+        id="menuToggle"
+        aria-label="Open navigation"
+        aria-expanded="false"
+    >
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <ul
+        class="nav-links"
+        id="navLinks"
+    >
+
+        <li>
+            <a href="index.html">
+                Home
+            </a>
+        </li>
+
+        <li>
+            <a href="challenges.html">
+                Challenges
+            </a>
+        </li>
+
+        <li>
+            <a href="leaderboard.html">
+                Leaderboard
+            </a>
+        </li>
+
+        <li>
+            <a href="profile.html">
+                Profile
+            </a>
+        </li>
+
+    </ul>
+
+</nav>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<header class="hero">
+
+    <div class="container">
+
+        <div class="eyebrow">
+            GIT CLUB × CHARUSAT
+        </div>
+
+        <h1>
+            ENTER THE
+            <span>ARENA.</span>
+        </h1>
+
+        <p>
+            Complete real-world missions, earn XP,
+            build your skills and climb the leaderboard.
+            Every mission moves your builder profile forward.
+        </p>
+
+
+        <div class="controls">
+
+            <input
+                type="text"
+                id="searchInput"
+                class="search"
+                placeholder="Search missions..."
+            >
+
+            <select id="categoryFilter"
+                    class="filter">
+
+                <option value="all">
+                    All Categories
+                </option>
+
+                <option value="Web Development">
+                    Web Development
+                </option>
+
+                <option value="AI / ML">
+                    AI / ML
+                </option>
+
+                <option value="Git & DevOps">
+                    Git & DevOps
+                </option>
+
+                <option value="Cybersecurity">
+                    Cybersecurity
+                </option>
+
+            </select>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<main class="container">
+
+
+<!-- =====================================================
+     STATS
+===================================================== -->
+
+<section class="stats">
+
+    <div class="stat">
+
+        <small>
+            Total Missions
+        </small>
+
+        <strong>
+            24
+        </strong>
+
+    </div>
+
+
+    <div class="stat">
+
+        <small>
+            Active
+        </small>
+
+        <strong>
+            08
+        </strong>
+
+    </div>
+
+
+    <div class="stat">
+
+        <small>
+            Upcoming
+        </small>
+
+        <strong>
+            06
+        </strong>
+
+    </div>
+
+
+    <div class="stat">
+
+        <small>
+            Completed
+        </small>
+
+        <strong id="completedStat">
+            10
+        </strong>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     STEP 7 — MISSION INTELLIGENCE
+===================================================== -->
+
+<section
+    class="recommendation"
+    id="recommendation"
+>
+
+    <div class="recommend-main">
+
+        <span class="intel-label">
+            ✦ MISSION INTELLIGENCE
+        </span>
+
+        <h2 id="recommendTitle">
+            Finding your next mission...
+        </h2>
+
+        <p id="recommendText">
+            Analyzing your builder profile and completed missions.
+        </p>
+
+        <div
+            class="recommend-meta"
+            id="recommendSkills">
+        </div>
+
+    </div>
+
+
+    <div class="recommend-side">
+
+        <span
+            class="recommend-xp"
+            id="recommendXP">
+            +0 XP
+        </span>
+
+        <button
+            class="primary-btn"
+            id="recommendBtn">
+
+            OPEN MISSION →
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     AVAILABLE MISSIONS
+===================================================== -->
+
+<section class="section-title">
+
+    <div>
+
+        <h2>
+            Available Missions
+        </h2>
+
+        <p>
+            Choose a mission and start building.
+        </p>
+
+    </div>
+
+</section>
+
+
+<section
+    class="grid"
+    id="challengeGrid">
+</section>
+
+
+<!-- =====================================================
+     ACTIVE MISSION WORKSPACE
+===================================================== -->
+
+<section
+    class="active"
+    id="activeMission"
+    style="display:none;"
+>
+
+    <div class="active-head">
+
+        <div>
+
+            <span class="active-label">
+                ACTIVE MISSION
+            </span>
+
+            <h2 id="activeTitle">
+                Mission
+            </h2>
+
+            <p id="activeDescription">
+                Mission description
+            </p>
+
+        </div>
+
+
+        <button
+            class="close-btn"
+            id="resetMissionBtn">
+
+            ×
+
+        </button>
+
+    </div>
+
+
+    <div class="workspace">
+
+
+        <!-- CHECKPOINTS -->
+
+        <div class="work-card">
+
+            <h3>
+                Mission Checkpoints
+            </h3>
+
+            <p>
+                Complete every checkpoint before submitting.
+            </p>
+
+
+            <label class="checkpoint">
+
+                <input
+                    type="checkbox"
+                    class="checkpoint-input"
+                    data-index="0"
+                >
+
+                Understand the problem
+
+            </label>
+
+
+            <label class="checkpoint">
+
+                <input
+                    type="checkbox"
+                    class="checkpoint-input"
+                    data-index="1"
+                >
+
+                Build the solution
+
+            </label>
+
+
+            <label class="checkpoint">
+
+                <input
+                    type="checkbox"
+                    class="checkpoint-input"
+                    data-index="2"
+                >
+
+                Test and document your solution
+
+            </label>
+
+
+            <div class="progress-wrap">
+
+                <div class="progress-bar">
+
+                    <div
+                        class="progress"
+                        id="missionProgress">
+                    </div>
+
+                </div>
+
+
+                <div class="progress-text">
+
+                    <span>
+                        Mission progress
+                    </span>
+
+                    <span id="progressText">
+                        33%
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- INTELLIGENCE -->
+
+        <div class="work-card">
+
+            <h3>
+                Mission Intelligence
+            </h3>
+
+            <p id="activeHint">
+                Your mission guidance will appear here.
+            </p>
+
+            <div
+                class="chips"
+                id="activeSkills">
+            </div>
+
+
+            <br>
+
+
+            <h3>
+                Submit Mission
+            </h3>
+
+            <input
+                class="url-input"
+                id="githubInput"
+                placeholder="GitHub repository URL"
+            >
+
+            <input
+                class="url-input"
+                id="demoInput"
+                placeholder="Live demo URL"
+            >
+
+            <button
+                class="submit-btn"
+                id="submitMissionBtn"
+                disabled>
+
+                SUBMIT MISSION
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+<!-- =====================================================
+     MISSION MODAL
+===================================================== -->
+
+<div
+    class="modal"
+    id="missionModal"
+>
+
+    <div class="modal-box">
+
+        <button
+            class="modal-close"
+            id="modalClose">
+
+            ×
+
+        </button>
+
+
+        <div class="eyebrow">
+            MISSION BRIEF
+        </div>
+
+
+        <h2 id="modalTitle">
+            Mission
+        </h2>
+
+
+        <p id="modalDescription">
+            Description
+        </p>
+
+
+        <div class="intel">
+
+            <strong>
+                MISSION INTELLIGENCE
+            </strong>
+
+            <p id="modalIntel">
+                Mission intelligence.
+            </p>
+
+
+            <div
+                class="chips"
+                id="modalSkills">
+            </div>
+
+        </div>
+
+
+        <button
+            class="primary-btn"
+            id="startMissionBtn">
+
+            START MISSION →
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     BADGE MODAL
+===================================================== -->
+
+<div
+    class="modal"
+    id="badgeModal"
+>
+
+    <div class="modal-box badge">
+
+        <div class="badge-icon">
+            ★
+        </div>
+
+        <div class="eyebrow">
+            NEW BADGE UNLOCKED
+        </div>
+
+        <h2 id="badgeTitle">
+            Builder Badge
+        </h2>
+
+        <p id="badgeText">
+            You unlocked a new achievement.
+        </p>
+
+        <button
+            class="primary-btn"
+            id="badgeClose">
+
+            AWESOME →
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- =====================================================
+     XP CELEBRATION
+===================================================== -->
+
+<div class="xp-celebration" id="xpCelebration">
+
+    <div class="xp-celebration-box">
+
+        <div class="xp-stars">
+            ✦
+        </div>
+
+        <div class="celebration-label">
+            MISSION COMPLETE
+        </div>
+
+        <h2>
+            +<span id="earnedXP">0</span> XP
+        </h2>
+
+        <p id="celebrationMessage">
+            Your builder profile just got stronger.
+        </p>
+
+        <div class="level-result">
+
+            <div>
+                <small>
+                    LEVEL
+                </small>
+
+                <strong id="oldLevel">
+                    7
+                </strong>
+            </div>
+
+            <span>
+                →
+            </span>
+
+            <div>
+                <small>
+                    NEW LEVEL
+                </small>
+
+                <strong id="newLevel">
+                    7
+                </strong>
+            </div>
+
+        </div>
+
+        <button
+            class="primary-btn"
+            id="celebrationClose">
+
+            CONTINUE BUILDING →
+
+        </button>
+
+    </div>
+
+</div>
+<!-- =====================================================
+     TOAST
+===================================================== -->
+
+<div
+    class="toast"
+    id="toast">
+</div>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    GIT Arena • Build. Ship. Level Up.
+
+</footer>
+
+
+<script>
+
+/* =========================================================
+   MISSION DATA
+========================================================= */
+
+const missions = [
+
+    {
+        id:7,
+
+        title:"Campus Connect",
+
+        category:"Web Development",
+
+        difficulty:"Medium",
+
+        xp:250,
+
+        description:
+            "Build a student-focused platform that connects campus events, clubs and opportunities.",
+
+        intel:
+            "A strong mission for improving frontend structure, responsive UI and student-focused product thinking.",
+
+        skills:[
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "UI/UX"
+        ]
+    },
+
+
+    {
+        id:8,
+
+        title:"Smart Study Planner",
+
+        category:"AI / ML",
+
+        difficulty:"Hard",
+
+        xp:400,
+
+        description:
+            "Create an intelligent planner that helps students organize subjects, tasks and study time.",
+
+        intel:
+            "Recommended when you want to strengthen problem solving and introduce intelligent features into a practical product.",
+
+        skills:[
+            "Python",
+            "AI",
+            "Logic",
+            "Data"
+        ]
+    },
+
+
+    {
+        id:9,
+
+        title:"Git Guardian",
+
+        category:"Git & DevOps",
+
+        difficulty:"Medium",
+
+        xp:300,
+
+        description:
+            "Create a developer workflow that detects common Git mistakes and guides users toward safer collaboration.",
+
+        intel:
+            "Useful for strengthening version control, collaboration and developer workflow knowledge.",
+
+        skills:[
+            "Git",
+            "GitHub",
+            "DevOps",
+            "CLI"
+        ]
+    },
+
+
+    {
+        id:10,
+
+        title:"SafeNet",
+
+        category:"Cybersecurity",
+
+        difficulty:"Hard",
+
+        xp:450,
+
+        description:
+            "Design a security-focused dashboard that helps users identify and understand common digital threats.",
+
+        intel:
+            "A high-XP challenge for builders interested in cybersecurity, risk detection and security awareness.",
+
+        skills:[
+            "Security",
+            "Networking",
+            "Threats",
+            "Dashboard"
+        ]
+    },
+
+
+    {
+        id:11,
+
+        title:"Event Pulse",
+
+        category:"Web Development",
+
+        difficulty:"Easy",
+
+        xp:200,
+
+        description:
+            "Build a clean event discovery interface where students can explore upcoming campus activities.",
+
+        intel:
+            "A quick mission for strengthening UI fundamentals and shipping a complete frontend experience.",
+
+        skills:[
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ]
+    },
+
+
+    {
+        id:12,
+
+        title:"Code Mentor",
+
+        category:"AI / ML",
+
+        difficulty:"Medium",
+
+        xp:350,
+
+        description:
+            "Build an assistant that gives beginner-friendly programming hints without directly giving away the answer.",
+
+        intel:
+            "Great for combining AI concepts with educational product design and problem-solving workflows.",
+
+        skills:[
+            "AI",
+            "JavaScript",
+            "Prompting",
+            "Logic"
+        ]
+    }
+
+];
+
+
+/* =========================================================
+   DEFAULT PROFILE
+========================================================= */
+
+const defaultProfile = {
+
+    id:"rtzsnd",
+
+    name:"Siddhi Panchal",
+
+    xp:3480,
+
+    level:7,
+
+    streak:7,
+
+    missions:10,
+
+    badges:[
+
+        "FIRST BUILDER",
+
+        "7 DAY STREAK",
+
+        "FAST SHIPPER",
+
+        "PROBLEM SOLVER",
+
+        "GIT READY",
+
+        "LEVEL 5+"
+
+    ],
+
+    completedMissionIds:[]
+
+};
+
+
+/* =========================================================
+   GLOBAL STATE
+========================================================= */
+
+let profile = null;
+
+let selectedMission = null;
+
+let recommendationMission = null;
+
+
+/* =========================================================
+   DOM
+========================================================= */
+
+const grid =
+    document.getElementById(
+        "challengeGrid"
+    );
+
+const completedStat =
+    document.getElementById(
+        "completedStat"
+    );
+
+const searchInput =
+    document.getElementById(
+        "searchInput"
+    );
+
+const categoryFilter =
+    document.getElementById(
+        "categoryFilter"
+    );
+
+const activeMission =
+    document.getElementById(
+        "activeMission"
+    );
+
+const activeTitle =
+    document.getElementById(
+        "activeTitle"
+    );
+
+const activeDescription =
+    document.getElementById(
+        "activeDescription"
+    );
+
+const activeHint =
+    document.getElementById(
+        "activeHint"
+    );
+
+const activeSkills =
+    document.getElementById(
+        "activeSkills"
+    );
+
+const missionProgress =
+    document.getElementById(
+        "missionProgress"
+    );
+
+const progressText =
+    document.getElementById(
+        "progressText"
+    );
+
+const githubInput =
+    document.getElementById(
+        "githubInput"
+    );
+
+const demoInput =
+    document.getElementById(
+        "demoInput"
+    );
+
+const submitMissionBtn =
+    document.getElementById(
+        "submitMissionBtn"
+    );
+
+const toast =
+    document.getElementById(
+        "toast"
+    );
+
+
+/* =========================================================
+   PROFILE
+========================================================= */
+
+function getProfile(){
+
+    const saved =
+        localStorage.getItem(
+            "arenaProfile"
+        );
+
+    if(saved){
+
+        profile =
+            JSON.parse(saved);
+
+    }else{
+
+        profile =
+            JSON.parse(
+                JSON.stringify(
+                    defaultProfile
+                )
+            );
+
+        saveProfile();
+    }
+
+    if(
+        !Array.isArray(
+            profile.completedMissionIds
+        )
+    ){
+
+        profile.completedMissionIds = [];
+
+    }
+
+    if(
+        !Array.isArray(
+            profile.badges
+        )
+    ){
+
+        profile.badges = [];
+
+    }
+
+    return profile;
+}
+
+
+function saveProfile(){
+
+    localStorage.setItem(
+
+        "arenaProfile",
+
+        JSON.stringify(profile)
+
+    );
+}
+
+
+/* =========================================================
+   LEVEL SYSTEM
+========================================================= */
+
+function calculateLevel(xp){
+
+    return Math.floor(
+        Number(xp) / 500
+    ) + 1;
+
+}
+
+
+/* =========================================================
+   UPDATE STATS
+========================================================= */
+
+function updateStats(){
+
+    completedStat.textContent =
+        profile.missions;
+
+}
+
+
+/* =========================================================
+   RENDER MISSIONS
+========================================================= */
+
+function render(){
+
+    const search =
+        searchInput.value
+        .trim()
+        .toLowerCase();
+
+    const category =
+        categoryFilter.value;
+
+
+    const filtered =
+        missions.filter(
+            mission => {
+
+                const matchesSearch =
+
+                    mission.title
+                    .toLowerCase()
+                    .includes(search)
+
+                    ||
+
+                    mission.description
+                    .toLowerCase()
+                    .includes(search)
+
+                    ||
+
+                    mission.category
+                    .toLowerCase()
+                    .includes(search);
+
+
+                const matchesCategory =
+
+                    category === "all"
+
+                    ||
+
+                    mission.category ===
+                    category;
+
+
+                return (
+                    matchesSearch &&
+                    matchesCategory
+                );
+
+            }
+        );
+
+
+    grid.innerHTML = "";
+
+
+    if(filtered.length === 0){
+
+        grid.innerHTML = `
+
+            <div
+                class="card"
+                style="grid-column:1/-1;text-align:center;">
+
+                <h3>
+                    No missions found
+                </h3>
+
+                <p>
+                    Try another search or category.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+    filtered.forEach(
+        mission => {
+
+            const completed =
+
+                profile.completedMissionIds
+                .includes(
+                    mission.id
+                );
+
+
+            const card =
+                document.createElement(
+                    "article"
+                );
+
+            card.className =
+                "card" +
+                (
+                    completed
+                    ? " completed"
+                    : ""
+                );
+
+
+            card.innerHTML = `
+
+                <div class="card-top">
+
+                    <span class="category">
+                        ${mission.category}
+                    </span>
+
+                    <span class="difficulty">
+                        ${mission.difficulty}
+                    </span>
+
+                </div>
+
+
+                <h3>
+                    ${mission.title}
+                </h3>
+
+
+                <p>
+                    ${mission.description}
+                </p>
+
+
+                <div class="card-bottom">
+
+                    <span class="xp">
+                        +${mission.xp} XP
+                    </span>
+
+                    ${
+                        completed
+
+                        ?
+
+                        `
+                        <span class="completed-label">
+                            ✓ COMPLETED
+                        </span>
+                        `
+
+                        :
+
+                        `
+                        <button
+                            class="card-btn"
+                            data-id="${mission.id}">
+
+                            VIEW MISSION
+
+                        </button>
+                        `
+                    }
+
+                </div>
+
+            `;
+
+
+            grid.appendChild(card);
+
+        }
+    );
+
+
+    document
+        .querySelectorAll(
+            ".card-btn"
+        )
+        .forEach(
+            button => {
+
+                button.addEventListener(
+                    "click",
+                    () => {
+
+                        const id =
+                            Number(
+                                button.dataset.id
+                            );
+
+                        openMission(id);
+
+                    }
+                );
+
+            }
+        );
+
+}
+
+
+/* =========================================================
+   OPEN MISSION MODAL
+========================================================= */
+
+function openMission(id){
+
+    selectedMission =
+        missions.find(
+            mission =>
+                mission.id === id
+        );
+
+
+    if(!selectedMission)
+        return;
+
+
+    document.getElementById(
+        "modalTitle"
+    ).textContent =
+        selectedMission.title;
+
+
+    document.getElementById(
+        "modalDescription"
+    ).textContent =
+        selectedMission.description;
+
+
+    document.getElementById(
+        "modalIntel"
+    ).textContent =
+        selectedMission.intel;
+
+
+    const modalSkills =
+        document.getElementById(
+            "modalSkills"
+        );
+
+
+    modalSkills.innerHTML = "";
+
+
+    selectedMission.skills.forEach(
+        skill => {
+
+            const chip =
+                document.createElement(
+                    "span"
+                );
+
+            chip.className =
+                "chip";
+
+            chip.textContent =
+                skill;
+
+            modalSkills.appendChild(
+                chip
+            );
+
+        }
+    );
+
+
+    document
+        .getElementById(
+            "missionModal"
+        )
+        .classList.add(
+            "show"
+        );
+
+}
+
+
+/* =========================================================
+   START MISSION
+========================================================= */
+
+function startMission(){
+
+    if(!selectedMission)
+        return;
+
+
+    const existing =
+        localStorage.getItem(
+            "activeMission"
+        );
+
+
+    let missionState;
+
+
+    if(existing){
+
+        const parsed =
+            JSON.parse(existing);
+
+
+        if(
+            parsed.id ===
+            selectedMission.id
+        ){
+
+            missionState =
+                parsed;
+
+        }
+
+    }
+
+
+    if(!missionState){
+
+        missionState = {
+
+            id:
+                selectedMission.id,
+
+            title:
+                selectedMission.title,
+
+            description:
+                selectedMission.description,
+
+            progress:33,
+
+            stage:"active",
+
+            checkpoints:[
+                false,
+                false,
+                false
+            ],
+
+            github:"",
+
+            demo:""
+
+        };
+
+    }
+
+
+    localStorage.setItem(
+
+        "activeMission",
+
+        JSON.stringify(
+            missionState
+        )
+
+    );
+
+
+    document
+        .getElementById(
+            "missionModal"
+        )
+        .classList.remove(
+            "show"
+        );
+
+
+    loadActiveMission();
+
+
+    activeMission.scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+    });
+
+
+    showToast(
+        "Mission started. Build something awesome!"
+    );
+
+}
+
+
+/* =========================================================
+   LOAD ACTIVE MISSION
+========================================================= */
+
+function loadActiveMission(){
+
+    const saved =
+        localStorage.getItem(
+            "activeMission"
+        );
+
+
+    if(!saved){
+
+        activeMission.style.display =
+            "none";
+
+        return;
+
+    }
+
+
+    const state =
+        JSON.parse(saved);
+
+
+    const mission =
+        missions.find(
+            item =>
+                item.id === state.id
+        );
+
+
+    if(!mission){
+
+        activeMission.style.display =
+            "none";
+
+        return;
+
+    }
+
+
+    if(
+        state.stage ===
+        "completed"
+    ){
+
+        activeMission.style.display =
+            "none";
+
+        return;
+
+    }
+
+
+    activeMission.style.display =
+        "block";
+
+
+    activeTitle.textContent =
+        mission.title;
+
+
+    activeDescription.textContent =
+        mission.description;
+
+
+    activeHint.textContent =
+        mission.intel;
+
+
+    activeSkills.innerHTML =
+        "";
+
+
+    mission.skills.forEach(
+        skill => {
+
+            const chip =
+                document.createElement(
+                    "span"
+                );
+
+            chip.className =
+                "chip";
+
+            chip.textContent =
+                skill;
+
+            activeSkills.appendChild(
+                chip
+            );
+
+        }
+    );
+
+
+    const checkpoints =
+        state.checkpoints ||
+        [false,false,false];
+
+
+    document
+        .querySelectorAll(
+            ".checkpoint-input"
+        )
+        .forEach(
+            (checkbox,index) => {
+
+                checkbox.checked =
+                    !!checkpoints[index];
+
+            }
+        );
+
+
+    updateProgress();
+
+
+    githubInput.value =
+        state.github || "";
+
+
+    demoInput.value =
+        state.demo || "";
+
+
+    validateSubmission();
+
+}
+
+
+/* =========================================================
+   UPDATE PROGRESS
+========================================================= */
+
+function updateProgress(){
+
+    const inputs =
+        document.querySelectorAll(
+            ".checkpoint-input"
+        );
+
+
+    let completed = 0;
+
+
+    inputs.forEach(
+        checkbox => {
+
+            if(checkbox.checked){
+
+                completed++;
+
+            }
+
+        }
+    );
+
+
+    let percentage = 33;
+
+
+    if(completed === 1)
+        percentage = 50;
+
+    if(completed === 2)
+        percentage = 75;
+
+    if(completed === 3)
+        percentage = 100;
+
+
+    missionProgress.style.width =
+        percentage + "%";
+
+
+    progressText.textContent =
+        percentage + "%";
+
+
+    const saved =
+        localStorage.getItem(
+            "activeMission"
+        );
+
+
+    if(saved){
+
+        const state =
+            JSON.parse(saved);
+
+
+        state.progress =
+            percentage;
+
+
+        state.checkpoints =
+            Array.from(
+                inputs
+            ).map(
+                input =>
+                    input.checked
+            );
+
+
+        localStorage.setItem(
+
+            "activeMission",
+
+            JSON.stringify(
+                state
+            )
+
+        );
+
+    }
+
+
+    validateSubmission();
+
+}
+
+
+/* =========================================================
+   URL VALIDATION
+========================================================= */
+
+function validUrl(value){
+
+    if(!value)
+        return false;
+
+
+    try{
+
+        const url =
+            new URL(value);
+
+
+        return (
+            url.protocol ===
+            "http:" ||
+
+            url.protocol ===
+            "https:"
+        );
+
+    }catch{
+
+        return false;
+
+    }
+
+}
+
+
+/* =========================================================
+   SUBMISSION VALIDATION
+========================================================= */
+
+function validateSubmission(){
+
+    const checkpoints =
+        Array.from(
+            document.querySelectorAll(
+                ".checkpoint-input"
+            )
+        );
+
+
+    const allDone =
+        checkpoints.length === 3 &&
+        checkpoints.every(
+            checkbox =>
+                checkbox.checked
+        );
+
+
+    const validLinks =
+        validUrl(
+            githubInput.value.trim()
+        )
+
+        &&
+
+        validUrl(
+            demoInput.value.trim()
+        );
+
+
+    submitMissionBtn.disabled =
+        !(
+            allDone &&
+            validLinks
+        );
+
+}
+
+
+/* =========================================================
+   COMPLETE MISSION
+========================================================= */
+
+function completeMission(){
+
+    if(!selectedMission){
+
+        const saved =
+            localStorage.getItem(
+                "activeMission"
+            );
+
+        if(saved){
+
+            const state =
+                JSON.parse(saved);
+
+            selectedMission =
+                missions.find(
+                    mission =>
+                        mission.id ===
+                        state.id
+                );
+
+        }
+
+    }
+
+
+    if(!selectedMission)
+        return;
+
+
+    if(
+        profile.completedMissionIds
+        .includes(
+            selectedMission.id
+        )
+    ){
+
+        showToast(
+            "Mission already completed."
+        );
+
+        return;
+
+    }
+
+
+    const previousLevel =
+        profile.level;
+
+
+    profile.xp +=
+        selectedMission.xp;
+
+
+    profile.missions += 1;
+
+
+    profile.streak += 1;
+
+
+    profile.completedMissionIds.push(
+        selectedMission.id
+    );
+
+
+    profile.level =
+        calculateLevel(
+            profile.xp
+        );
+
+
+    checkBadges();
+
+
+    saveProfile();
+
+
+    const saved =
+        localStorage.getItem(
+            "activeMission"
+        );
+
+
+    if(saved){
+
+        const state =
+            JSON.parse(saved);
+
+
+        state.stage =
+            "completed";
+
+
+        state.progress =
+            100;
+
+
+        state.github =
+            githubInput.value.trim();
+
+
+        state.demo =
+            demoInput.value.trim();
+
+
+        localStorage.setItem(
+
+            "activeMission",
+
+            JSON.stringify(
+                state
+            )
+
+        );
+
+    }
+
+
+    updateStats();
+
+
+    render();
+
+
+    updateRecommendation();
+
+
+    activeMission.style.display =
+        "none";
+
+
+   showXPCelebration(
+
+    selectedMission.xp,
+
+    previousLevel,
+
+    profile.level,
+
+    selectedMission.title
+
+);
+
+
+    checkNewBadge();
+
+
+    selectedMission = null;
+
+}
+
+
+/* =========================================================
+   BADGE SYSTEM
+========================================================= */
+
+function checkBadges(){
+
+    const newBadges = [];
+
+
+    if(
+        profile.missions >= 11 &&
+        !profile.badges.includes(
+            "FIRST BUILDER"
+        )
+    ){
+
+        profile.badges.push(
+            "FIRST BUILDER"
+        );
+
+        newBadges.push(
+            "FIRST BUILDER"
+        );
+
+    }
+
+
+    if(
+        profile.missions >= 15 &&
+        !profile.badges.includes(
+            "ARENA BUILDER"
+        )
+    ){
+
+        profile.badges.push(
+            "ARENA BUILDER"
+        );
+
+        newBadges.push(
+            "ARENA BUILDER"
+        );
+
+    }
+
+
+    if(
+        profile.xp >= 5000 &&
+        !profile.badges.includes(
+            "XP HUNTER"
+        )
+    ){
+
+        profile.badges.push(
+            "XP HUNTER"
+        );
+
+        newBadges.push(
+            "XP HUNTER"
+        );
+
+    }
+
+
+    if(
+        profile.level >= 10 &&
+        !profile.badges.includes(
+            "LEVEL 10"
+        )
+    ){
+
+        profile.badges.push(
+            "LEVEL 10"
+        );
+
+        newBadges.push(
+            "LEVEL 10"
+        );
+
+    }
+
+
+    if(newBadges.length){
+
+        localStorage.setItem(
+            "newBadges",
+            JSON.stringify(
+                newBadges
+            )
+        );
+
+    }
+
+}
+
+
+function checkNewBadge(){
+
+    const saved =
+        localStorage.getItem(
+            "newBadges"
+        );
+
+
+    if(!saved)
+        return;
+
+
+    const badges =
+        JSON.parse(saved);
+
+
+    if(
+        badges.length > 0
+    ){
+
+        document.getElementById(
+            "badgeTitle"
+        ).textContent =
+            badges[0];
+
+
+        document.getElementById(
+            "badgeText"
+        ).textContent =
+            "Your builder profile just unlocked a new achievement.";
+
+
+        document
+            .getElementById(
+                "badgeModal"
+            )
+            .classList.add(
+                "show"
+            );
+
+    }
+
+
+    localStorage.removeItem(
+        "newBadges"
+    );
+
+}
+
+
+/* =========================================================
+   STEP 7
+   MISSION INTELLIGENCE ENGINE
+========================================================= */
+
+function updateRecommendation(){
+
+    const available =
+        missions.filter(
+            mission =>
+
+                !profile
+                    .completedMissionIds
+                    .includes(
+                        mission.id
+                    )
+        );
+
+
+    if(
+        available.length === 0
+    ){
+
+        recommendationMission =
+            null;
+
+
+        document.getElementById(
+            "recommendTitle"
+        ).textContent =
+            "Arena Complete";
+
+
+        document.getElementById(
+            "recommendText"
+        ).textContent =
+            "You have completed every currently available mission. More challenges are coming soon.";
+
+
+        document.getElementById(
+            "recommendXP"
+        ).textContent =
+            "MAX XP";
+
+
+        document.getElementById(
+            "recommendSkills"
+        ).innerHTML =
+            `<span class="chip">
+                ALL MISSIONS COMPLETE
+             </span>`;
+
+
+        document.getElementById(
+            "recommendBtn"
+        ).disabled =
+            true;
+
+
+        return;
+
+    }
+
+
+    document.getElementById(
+        "recommendBtn"
+    ).disabled =
+        false;
+
+
+    /*
+        CATEGORY EXPERIENCE
+
+        Count how many missions
+        the user completed in each
+        category.
+    */
+
+    const categoryScore = {};
+
+
+    missions.forEach(
+        mission => {
+
+            if(
+                profile
+                    .completedMissionIds
+                    .includes(
+                        mission.id
+                    )
+            ){
+
+                categoryScore[
+                    mission.category
+                ] =
+                    (
+                        categoryScore[
+                            mission.category
+                        ] || 0
+                    ) + 1;
+
+            }
+
+        }
+    );
+
+
+    /*
+        Find the user's strongest
+        category.
+    */
+
+    let strongestCategory =
+        null;
+
+    let strongestScore = 0;
+
+
+    Object.entries(
+        categoryScore
+    ).forEach(
+        ([category,score]) => {
+
+            if(
+                score >
+                strongestScore
+            ){
+
+                strongestScore =
+                    score;
+
+                strongestCategory =
+                    category;
+
+            }
+
+        }
+    );
+
+
+    /*
+        Score every available mission.
+    */
+
+    const scored =
+        available.map(
+            mission => {
+
+                let score = 0;
+
+
+                /*
+                    Match user's
+                    strongest category.
+                */
+
+                if(
+                    strongestCategory &&
+                    mission.category ===
+                    strongestCategory
+                ){
+
+                    score += 40;
+
+                }
+
+
+                /*
+                    Reward higher XP.
+                */
+
+                score +=
+                    mission.xp / 20;
+
+
+                /*
+                    Difficulty logic.
+
+                    Lower levels get easier
+                    missions.
+
+                    Higher levels get
+                    medium/hard missions.
+                */
+
+                if(
+                    profile.level <= 4
+                ){
+
+                    if(
+                        mission.difficulty ===
+                        "Easy"
+                    ){
+
+                        score += 30;
+
+                    }
+
+                }
+
+
+                if(
+                    profile.level >= 5 &&
+                    profile.level <= 7
+                ){
+
+                    if(
+                        mission.difficulty ===
+                        "Medium"
+                    ){
+
+                        score += 30;
+
+                    }
+
+                }
+
+
+                if(
+                    profile.level >= 8
+                ){
+
+                    if(
+                        mission.difficulty ===
+                        "Hard"
+                    ){
+
+                        score += 35;
+
+                    }
+
+                }
+
+
+                return {
+
+                    mission,
+                    score
+
+                };
+
+            }
+        );
+
+
+    scored.sort(
+        (a,b) =>
+            b.score -
+            a.score
+    );
+
+
+    recommendationMission =
+        scored[0].mission;
+
+
+    const mission =
+        recommendationMission;
+
+
+    /*
+        Recommendation title
+    */
+
+    document.getElementById(
+        "recommendTitle"
+    ).textContent =
+        mission.title;
+
+
+    /*
+        Personalized explanation
+    */
+
+    let explanation =
+        "Based on your current builder profile, this mission is a strong next step.";
+
+
+    if(
+        strongestCategory &&
+        mission.category ===
+        strongestCategory
+    ){
+
+        explanation =
+            "You have been building momentum in " +
+            mission.category +
+            ". This mission continues that skill path while giving you another chance to earn XP.";
+
+    }else if(
+        mission.difficulty ===
+        "Hard"
+    ){
+
+        explanation =
+            "Your current level makes this a good opportunity to take on a higher-impact challenge and push your skills further.";
+
+    }else if(
+        mission.difficulty ===
+        "Easy"
+    ){
+
+        explanation =
+            "This is a quick mission designed to help you ship something practical and maintain your builder momentum.";
+
+    }
+
+
+    document.getElementById(
+        "recommendText"
+    ).textContent =
+        explanation;
+
+
+    /*
+        XP
+    */
+
+    document.getElementById(
+        "recommendXP"
+    ).textContent =
+        "+" +
+        mission.xp +
+        " XP";
+
+
+    /*
+        Skills
+    */
+
+    const skills =
+        document.getElementById(
+            "recommendSkills"
+        );
+
+
+    skills.innerHTML = "";
+
+
+    const categoryChip =
+        document.createElement(
+            "span"
+        );
+
+    categoryChip.className =
+        "chip";
+
+    categoryChip.textContent =
+        mission.category;
+
+
+    skills.appendChild(
+        categoryChip
+    );
+
+
+    const difficultyChip =
+        document.createElement(
+            "span"
+        );
+
+    difficultyChip.className =
+        "chip";
+
+    difficultyChip.textContent =
+        mission.difficulty;
+
+
+    skills.appendChild(
+        difficultyChip
+    );
+
+
+    mission.skills
+        .slice(0,3)
+        .forEach(
+            skill => {
+
+                const chip =
+                    document.createElement(
+                        "span"
+                    );
+
+                chip.className =
+                    "chip";
+
+                chip.textContent =
+                    skill;
+
+                skills.appendChild(
+                    chip
+                );
+
+            }
+        );
+
+}
+
+
+/* =========================================================
+   RECOMMENDATION BUTTON
+========================================================= */
+
+document
+    .getElementById(
+        "recommendBtn"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            if(
+                !recommendationMission
+            )
+                return;
+
+
+            openMission(
+                recommendationMission.id
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   CHECKPOINT EVENTS
+========================================================= */
+
+document
+    .querySelectorAll(
+        ".checkpoint-input"
+    )
+    .forEach(
+        checkbox => {
+
+            checkbox.addEventListener(
+                "change",
+                updateProgress
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   URL EVENTS
+========================================================= */
+
+githubInput.addEventListener(
+    "input",
+    () => {
+
+        saveActiveLinks();
+
+        validateSubmission();
+
+    }
+);
+
+
+demoInput.addEventListener(
+    "input",
+    () => {
+
+        saveActiveLinks();
+
+        validateSubmission();
+
+    }
+);
+
+
+function saveActiveLinks(){
+
+    const saved =
+        localStorage.getItem(
+            "activeMission"
+        );
+
+
+    if(!saved)
+        return;
+
+
+    const state =
+        JSON.parse(saved);
+
+
+    state.github =
+        githubInput.value.trim();
+
+
+    state.demo =
+        demoInput.value.trim();
+
+
+    localStorage.setItem(
+
+        "activeMission",
+
+        JSON.stringify(
+            state
+        )
+
+    );
+
+}
+
+
+/* =========================================================
+   SUBMIT EVENT
+========================================================= */
+
+submitMissionBtn.addEventListener(
+    "click",
+    completeMission
+);
+
+
+/* =========================================================
+   START BUTTON
+========================================================= */
+
+document
+    .getElementById(
+        "startMissionBtn"
+    )
+    .addEventListener(
+        "click",
+        startMission
+    );
+
+
+/* =========================================================
+   MODAL CLOSE
+========================================================= */
+
+document
+    .getElementById(
+        "modalClose"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            document
+                .getElementById(
+                    "missionModal"
+                )
+                .classList.remove(
+                    "show"
+                );
+
+        }
+    );
+
+
+document
+    .getElementById(
+        "badgeClose"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            document
+                .getElementById(
+                    "badgeModal"
+                )
+                .classList.remove(
+                    "show"
+                );
+
+        }
+    );
+
+
+/* =========================================================
+   RESET ACTIVE MISSION
+========================================================= */
+
+document
+    .getElementById(
+        "resetMissionBtn"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            localStorage.removeItem(
+                "activeMission"
+            );
+
+
+            activeMission.style.display =
+                "none";
+
+
+            selectedMission =
+                null;
+
+
+            showToast(
+                "Active mission closed."
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+searchInput.addEventListener(
+    "input",
+    render
+);
+
+
+/* =========================================================
+   FILTER
+========================================================= */
+
+categoryFilter.addEventListener(
+    "change",
+    render
+);
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+let toastTimer;
+
+
+function showToast(message){
+
+    toast.textContent =
+        message;
+
+
+    toast.classList.add(
+        "show"
+    );
+
+
+    clearTimeout(
+        toastTimer
+    );
+
+
+    toastTimer =
+        setTimeout(
+            () => {
+
+                toast.classList.remove(
+                    "show"
+                );
+
+            },
+            3200
+        );
+
+}
+/* =========================================================
+   STEP 8.2 — XP CELEBRATION
+========================================================= */
+
+const xpCelebration =
+    document.getElementById(
+        "xpCelebration"
+    );
+
+const earnedXP =
+    document.getElementById(
+        "earnedXP"
+    );
+
+const oldLevel =
+    document.getElementById(
+        "oldLevel"
+    );
+
+const newLevel =
+    document.getElementById(
+        "newLevel"
+    );
+
+const celebrationMessage =
+    document.getElementById(
+        "celebrationMessage"
+    );
+
+const celebrationClose =
+    document.getElementById(
+        "celebrationClose"
+    );
+
+
+function showXPCelebration(
+    xp,
+    previousLevel,
+    currentLevel,
+    missionTitle
+){
+
+    earnedXP.textContent =
+        xp;
+
+
+    oldLevel.textContent =
+        previousLevel;
+
+
+    newLevel.textContent =
+        currentLevel;
+
+
+    if(
+        currentLevel >
+        previousLevel
+    ){
+
+        celebrationMessage.textContent =
+            "LEVEL UP! " +
+            missionTitle +
+            " pushed your builder profile to the next level.";
+
+    }else{
+
+        celebrationMessage.textContent =
+            missionTitle +
+            " completed. Keep building and keep climbing.";
+
+    }
+
+
+    xpCelebration.classList.add(
+        "show"
+    );
+
+}
+
+
+function closeXPCelebration(){
+
+    xpCelebration.classList.remove(
+        "show"
+    );
+
+}
+
+
+celebrationClose.addEventListener(
+    "click",
+    closeXPCelebration
+);
+
+
+xpCelebration.addEventListener(
+    "click",
+    event => {
+
+        if(
+            event.target ===
+            xpCelebration
+        ){
+
+            closeXPCelebration();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+getProfile();
+
+updateStats();
+
+render();
+
+loadActiveMission();
+
+updateRecommendation();
+/* =========================================================
+   STEP 8.6 — MOBILE MENU
+========================================================= */
+
+const menuToggle =
+    document.getElementById(
+        "menuToggle"
+    );
+
+const navLinks =
+    document.getElementById(
+        "navLinks"
+    );
+
+
+if(menuToggle && navLinks){
+
+    menuToggle.addEventListener(
+        "click",
+        () => {
+
+            const isOpen =
+                navLinks.classList.toggle(
+                    "open"
+                );
+
+            menuToggle.classList.toggle(
+                "open",
+                isOpen
+            );
+
+            menuToggle.setAttribute(
+                "aria-expanded",
+                isOpen
+            );
+
+        }
+    );
+
+
+    /* Close after selecting a page */
+
+    navLinks
+        .querySelectorAll("a")
+        .forEach(link => {
+
+            link.addEventListener(
+                "click",
+                () => {
+
+                    navLinks.classList.remove(
+                        "open"
+                    );
+
+                    menuToggle.classList.remove(
+                        "open"
+                    );
+
+                    menuToggle.setAttribute(
+                        "aria-expanded",
+                        "false"
+                    );
+
+                }
+            );
+
+        });
+
+
+    /* Close if user clicks outside */
+
+    document.addEventListener(
+        "click",
+        event => {
+
+            if(
+                !menuToggle.contains(event.target) &&
+                !navLinks.contains(event.target)
+            ){
+
+                navLinks.classList.remove(
+                    "open"
+                );
+
+                menuToggle.classList.remove(
+                    "open"
+                );
+
+                menuToggle.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
+
+            }
+
+        }
+    );
+
+}
+/* =========================================================
+   ACTIVE PAGE
+========================================================= */
+
+const currentPage =
+    window.location.pathname
+        .split("/")
+        .pop() ||
+    "index.html";
+
+
+document
+    .querySelectorAll(
+        ".nav-links a"
+    )
+    .forEach(link => {
+
+        const linkPage =
+            link
+                .getAttribute("href")
+                .split("/")
+                .pop();
+
+
+        if(
+            linkPage ===
+            currentPage
+        ){
+
+            link.classList.add(
+                "active-link"
+            );
+
+        }
+
+    });
+
+</script>
+
+</body>
+</html>
