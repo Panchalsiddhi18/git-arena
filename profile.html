@@ -211,7 +211,6 @@ nav{
 
         transform:
             translateY(20px);
-
     }
 
     to{
@@ -220,7 +219,6 @@ nav{
 
         transform:
             translateY(0);
-
     }
 
 }
@@ -525,7 +523,6 @@ nav{
 
         transform:
             translateY(12px);
-
     }
 
     to{
@@ -534,7 +531,6 @@ nav{
 
         transform:
             translateY(0);
-
     }
 
 }
@@ -1081,19 +1077,7 @@ footer{
 
 }
 
-@media(max-width:450px){
 
-    .stats{
-
-        grid-template-columns:1fr;
-    }
-
-    .badges{
-
-        grid-template-columns:1fr 1fr;
-    }
-
-}
 /* =========================================================
    PROFILE MOBILE POLISH
 ========================================================= */
@@ -1194,17 +1178,24 @@ footer{
     }
 
 }
+
+
 /* =========================================================
    STEP 8.6 — MOBILE HAMBURGER NAVIGATION
 ========================================================= */
 
 .arena-nav{
+
     position:sticky;
+
     top:0;
+
     z-index:1000;
 
     display:flex;
+
     align-items:center;
+
     justify-content:space-between;
 
     padding:0 7%;
@@ -1217,26 +1208,36 @@ footer{
 }
 
 .arena-nav .logo{
+
     font-size:22px;
+
     font-weight:800;
+
     letter-spacing:1px;
+
     color:#b8ff3d;
 }
 
 .arena-nav .logo span{
+
     color:#ffffff;
 }
 
 .arena-nav .nav-links{
+
     display:flex;
+
     align-items:center;
+
     gap:28px;
 
     list-style:none;
 }
 
 .arena-nav .nav-links a{
+
     color:#a9afb9;
+
     text-decoration:none;
 
     font-size:14px;
@@ -1246,6 +1247,7 @@ footer{
 }
 
 .arena-nav .nav-links a:hover{
+
     color:#b8ff3d;
 }
 
@@ -1259,6 +1261,7 @@ footer{
     display:none;
 
     width:42px;
+
     height:42px;
 
     border:1px solid #303743;
@@ -1270,6 +1273,7 @@ footer{
     cursor:pointer;
 
     align-items:center;
+
     justify-content:center;
 
     flex-direction:column;
@@ -1284,6 +1288,7 @@ footer{
     display:block;
 
     width:19px;
+
     height:2px;
 
     background:#b8ff3d;
@@ -1315,7 +1320,6 @@ footer{
             0 5%;
 
         min-height:66px;
-
     }
 
     .menu-toggle{
@@ -1325,7 +1329,6 @@ footer{
         position:relative;
 
         z-index:1002;
-
     }
 
     .arena-nav .nav-links{
@@ -1364,7 +1367,6 @@ footer{
             opacity .25s ease,
             transform .25s ease,
             visibility .25s ease;
-
     }
 
     .arena-nav .nav-links.open{
@@ -1375,10 +1377,10 @@ footer{
 
         transform:
             translateY(0);
-
     }
 
     .arena-nav .nav-links li{
+
         width:100%;
     }
 
@@ -1393,13 +1395,11 @@ footer{
         border-radius:9px;
 
         font-size:12px;
-
     }
 
     .arena-nav .nav-links a:hover{
 
         background:#171b22;
-
     }
 
 
@@ -1410,13 +1410,11 @@ footer{
         transform:
             translateY(7px)
             rotate(45deg);
-
     }
 
     .menu-toggle.open span:nth-child(2){
 
         opacity:0;
-
     }
 
     .menu-toggle.open span:nth-child(3){
@@ -1424,7 +1422,6 @@ footer{
         transform:
             translateY(-7px)
             rotate(-45deg);
-
     }
 
 }
@@ -1439,14 +1436,12 @@ footer{
     .arena-nav .logo{
 
         font-size:18px;
-
     }
 
     .menu-toggle{
 
         width:38px;
         height:38px;
-
     }
 
 }
@@ -1457,6 +1452,13 @@ footer{
 
 
 <body>
+
+<!-- =====================================================
+     ONBOARDING
+     IMPORTANT: keep this BEFORE page content/scripts
+===================================================== -->
+
+<script src="js/onboarding.js"></script>
 
 
 <!-- =====================================================
@@ -1475,9 +1477,11 @@ footer{
         aria-label="Open navigation"
         aria-expanded="false"
     >
+
         <span></span>
         <span></span>
         <span></span>
+
     </button>
 
     <ul
@@ -1513,6 +1517,7 @@ footer{
 
 </nav>
 
+
 <!-- =====================================================
      PROFILE HERO
 ===================================================== -->
@@ -1526,8 +1531,11 @@ footer{
 
     <div class="profile-card">
 
-        <div class="avatar">
-            SP
+        <div
+            class="avatar"
+            id="profileAvatar"
+        >
+            B
         </div>
 
 
@@ -1538,7 +1546,7 @@ footer{
             </small>
 
             <h1 id="profileName">
-                Siddhi Panchal
+                Builder
             </h1>
 
             <p>
@@ -1549,14 +1557,15 @@ footer{
             <div class="level-badge">
 
                 LEVEL
+
                 <strong id="profileLevel">
-                    7
+                    1
                 </strong>
 
                 •
 
                 <span id="profileXP">
-                    3480 XP
+                    0 XP
                 </span>
 
             </div>
@@ -1577,7 +1586,7 @@ footer{
             </span>
 
             <strong id="xpRemaining">
-                20 XP
+                500 XP
             </strong>
 
         </div>
@@ -1587,7 +1596,8 @@ footer{
 
             <div
                 class="xp-fill"
-                id="xpFill">
+                id="xpFill"
+            >
             </div>
 
         </div>
@@ -1596,13 +1606,15 @@ footer{
         <div class="xp-info">
 
             <span id="currentLevelXP">
-                3000 XP
+                0 XP
             </span>
 
             <span>
+
                 <strong id="nextLevelXP">
-                    3500 XP
+                    500 XP
                 </strong>
+
             </span>
 
         </div>
@@ -1643,7 +1655,7 @@ footer{
         </small>
 
         <strong id="missionsStat">
-            10
+            0
         </strong>
 
         <span>
@@ -1660,7 +1672,7 @@ footer{
         </small>
 
         <strong id="xpStat">
-            3480
+            0
         </strong>
 
         <span>
@@ -1677,7 +1689,7 @@ footer{
         </small>
 
         <strong id="streakStat">
-            7
+            0
         </strong>
 
         <span>
@@ -1694,7 +1706,7 @@ footer{
         </small>
 
         <strong id="badgesStat">
-            6
+            0
         </strong>
 
         <span>
@@ -1722,7 +1734,7 @@ footer{
         <div class="streak-count">
 
             <span id="streakNumber">
-                7
+                0
             </span>
 
             days
@@ -1734,7 +1746,8 @@ footer{
 
     <div
         class="streak-days"
-        id="streakDays">
+        id="streakDays"
+    >
     </div>
 
 </section>
@@ -1774,7 +1787,8 @@ footer{
 
                 <div
                     class="skill-fill"
-                    style="width:86%">
+                    style="width:86%"
+                >
                 </div>
 
             </div>
@@ -1800,7 +1814,8 @@ footer{
 
                 <div
                     class="skill-fill"
-                    style="width:74%">
+                    style="width:74%"
+                >
                 </div>
 
             </div>
@@ -1826,7 +1841,8 @@ footer{
 
                 <div
                     class="skill-fill"
-                    style="width:68%">
+                    style="width:68%"
+                >
                 </div>
 
             </div>
@@ -1852,7 +1868,8 @@ footer{
 
                 <div
                     class="skill-fill"
-                    style="width:81%">
+                    style="width:81%"
+                >
                 </div>
 
             </div>
@@ -1873,7 +1890,8 @@ footer{
 
         <div
             class="badges"
-            id="badgesContainer">
+            id="badgesContainer"
+        >
         </div>
 
     </div>
@@ -1906,7 +1924,8 @@ footer{
 
     <div
         class="activity"
-        id="activityContainer">
+        id="activityContainer"
+    >
     </div>
 
 </section>
@@ -1961,48 +1980,6 @@ footer{
 <script>
 
 /* =========================================================
-   PROFILE DATA
-========================================================= */
-
-const defaultProfile = {
-
-    name:
-        "Siddhi Panchal",
-
-    xp:
-        3480,
-
-    level:
-        7,
-
-    streak:
-        7,
-
-    missions:
-        10,
-
-    badges:[
-
-        "FIRST BUILDER",
-
-        "7 DAY STREAK",
-
-        "FAST SHIPPER",
-
-        "PROBLEM SOLVER",
-
-        "GIT READY",
-
-        "LEVEL 5+"
-
-    ],
-
-    completedMissionIds:[]
-
-};
-
-
-/* =========================================================
    LOAD PROFILE
 ========================================================= */
 
@@ -2013,21 +1990,75 @@ function getProfile(){
             "arenaProfile"
         );
 
-
     if(saved){
 
-        return JSON.parse(saved);
+        try{
+
+            return JSON.parse(saved);
+
+        }catch(error){
+
+            console.error(
+                "Invalid profile data:",
+                error
+            );
+
+            localStorage.removeItem(
+                "arenaProfile"
+            );
+
+        }
 
     }
 
-
-    return defaultProfile;
+    return null;
 
 }
 
 
-const profile =
-    getProfile();
+const profile = getProfile();
+
+
+/* =========================================================
+   SAFETY CHECK
+========================================================= */
+
+if(!profile){
+
+    window.location.href =
+        "index.html";
+
+}else{
+
+
+/* =========================================================
+   NORMALIZE PROFILE DATA
+========================================================= */
+
+profile.name =
+    profile.name ||
+    "Builder";
+
+profile.xp =
+    Number(profile.xp) || 0;
+
+profile.missions =
+    Number(profile.missions) || 0;
+
+profile.streak =
+    Number(profile.streak) || 0;
+
+profile.badges =
+    Array.isArray(profile.badges)
+        ? profile.badges
+        : [];
+
+profile.completedMissionIds =
+    Array.isArray(
+        profile.completedMissionIds
+    )
+        ? profile.completedMissionIds
+        : [];
 
 
 /* =========================================================
@@ -2043,6 +2074,42 @@ function calculateLevel(xp){
 }
 
 
+profile.level =
+    calculateLevel(
+        profile.xp
+    );
+
+
+/* =========================================================
+   PROFILE INITIALS
+========================================================= */
+
+const profileAvatar =
+    document.getElementById(
+        "profileAvatar"
+    );
+
+if(profileAvatar){
+
+    const initials =
+        profile.name
+            .trim()
+            .split(/\s+/)
+            .slice(0,2)
+            .map(
+                part =>
+                    part
+                        .charAt(0)
+                        .toUpperCase()
+            )
+            .join("");
+
+    profileAvatar.textContent =
+        initials || "B";
+
+}
+
+
 /* =========================================================
    BASIC PROFILE DATA
 ========================================================= */
@@ -2051,12 +2118,6 @@ document.getElementById(
     "profileName"
 ).textContent =
     profile.name;
-
-
-profile.level =
-    calculateLevel(
-        profile.xp
-    );
 
 
 document.getElementById(
@@ -2166,13 +2227,18 @@ document.getElementById(
     " XP";
 
 
+const remainingXP =
+    Math.max(
+        0,
+        nextLevelXP -
+        profile.xp
+    );
+
+
 document.getElementById(
     "xpRemaining"
 ).textContent =
-    (
-        nextLevelXP -
-        profile.xp
-    ) +
+    remainingXP +
     " XP";
 
 
@@ -2187,6 +2253,7 @@ const streakDays =
 
 
 const days = [
+
     "MON",
     "TUE",
     "WED",
@@ -2194,6 +2261,7 @@ const days = [
     "FRI",
     "SAT",
     "SUN"
+
 ];
 
 
@@ -2371,7 +2439,8 @@ const activityContainer =
 
 
 const completed =
-    profile.completedMissionIds || [];
+    profile.completedMissionIds ||
+    [];
 
 
 const missionNames = {
@@ -2382,28 +2451,28 @@ const missionNames = {
     },
 
     8:{
-        name:"Smart Study Planner",
-        xp:400
+        name:"Debug Rush",
+        xp:100
     },
 
     9:{
-        name:"Git Guardian",
-        xp:300
+        name:"Smart Campus",
+        xp:400
     },
 
     10:{
-        name:"SafeNet",
-        xp:450
+        name:"Interface Zero",
+        xp:250
     },
 
     11:{
-        name:"Event Pulse",
-        xp:200
+        name:"Git Detective",
+        xp:150
     },
 
     12:{
-        name:"Code Mentor",
-        xp:350
+        name:"Build for Impact",
+        xp:500
     }
 
 };
@@ -2496,7 +2565,7 @@ if(completed.length === 0){
 
 
 /* =========================================================
-   SAVE UPDATED LEVEL
+   SAVE UPDATED PROFILE
 ========================================================= */
 
 localStorage.setItem(
@@ -2506,14 +2575,19 @@ localStorage.setItem(
     JSON.stringify(profile)
 
 );
+
+}
+
+
 /* =========================================================
-   STEP 8.6 — MOBILE MENU
+   MOBILE MENU
 ========================================================= */
 
 const menuToggle =
     document.getElementById(
         "menuToggle"
     );
+
 
 const navLinks =
     document.getElementById(
@@ -2532,10 +2606,12 @@ if(menuToggle && navLinks){
                     "open"
                 );
 
+
             menuToggle.classList.toggle(
                 "open",
                 isOpen
             );
+
 
             menuToggle.setAttribute(
                 "aria-expanded",
@@ -2582,8 +2658,12 @@ if(menuToggle && navLinks){
         event => {
 
             if(
-                !menuToggle.contains(event.target) &&
-                !navLinks.contains(event.target)
+                !menuToggle.contains(
+                    event.target
+                ) &&
+                !navLinks.contains(
+                    event.target
+                )
             ){
 
                 navLinks.classList.remove(
@@ -2605,6 +2685,8 @@ if(menuToggle && navLinks){
     );
 
 }
+
+
 /* =========================================================
    ACTIVE PAGE
 ========================================================= */

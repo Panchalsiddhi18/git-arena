@@ -1453,12 +1453,11 @@ footer{
                 YOUR CURRENT POSITION
             </small>
 
-            <strong
-                id="currentName">
+            <strong id="currentName">
 
-                Siddhi Panchal
+    Builder
 
-            </strong>
+</strong>
 
         </div>
 
@@ -1475,9 +1474,8 @@ footer{
             </small>
 
             <strong id="currentRank">
-                #3
-            </strong>
-
+    #1
+</strong>
         </div>
 
 
@@ -1488,8 +1486,8 @@ footer{
             </small>
 
             <strong id="currentXP">
-                3480
-            </strong>
+    0
+</strong>
 
         </div>
 
@@ -1501,8 +1499,8 @@ footer{
             </small>
 
             <strong id="currentLevel">
-                7
-            </strong>
+    1
+</strong>
 
         </div>
 
@@ -1514,8 +1512,8 @@ footer{
             </small>
 
             <strong id="currentStreak">
-                🔥 7
-            </strong>
+    🔥 0
+</strong>
 
         </div>
 
@@ -1614,26 +1612,27 @@ footer{
 const defaultProfile = {
 
     name:
-        "Siddhi Panchal",
+        "Builder",
 
     xp:
-        3480,
+        0,
 
     level:
-        7,
+        1,
 
     streak:
-        7,
+        0,
 
     missions:
-        10,
+        0,
 
-    badges:[],
+    badges:
+        [],
 
-    completedMissionIds:[]
+    completedMissionIds:
+        []
 
 };
-
 
 /* =========================================================
    LOAD PROFILE
@@ -1727,24 +1726,24 @@ let users = [
 
 
     {
-        name:
-            "Siddhi Panchal",
+    name:
+        profile.name,
 
-        category:
-            "GIT Club Builder",
+    category:
+        "GIT Club Builder",
 
-        xp:
-            3480,
+    xp:
+        profile.xp,
 
-        streak:
-            7,
+    streak:
+        profile.streak,
 
-        level:
-            7,
+    level:
+        profile.level,
 
-        current:true
+    current:true
 
-    },
+},
 
 
     {

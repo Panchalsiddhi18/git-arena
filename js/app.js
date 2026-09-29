@@ -56,19 +56,16 @@ loadTheme();
 
 /* ================= USER DATA ================= */
 
+/* ================= USER DATA ================= */
+
 const defaultUser = {
 
-    name: "Siddhi",
-
-    xp: 1980,
-
-    level: 4,
-
-    streak: 7,
-
-    completed: 8,
-
-    inProgress: 2
+    name: "Builder",
+    xp: 0,
+    level: 1,
+    streak: 0,
+    completed: 0,
+    inProgress: 0
 
 };
 
@@ -76,7 +73,9 @@ const defaultUser = {
 function getUserData() {
 
     const savedUser =
-        localStorage.getItem("gitArenaUser");
+        localStorage.getItem(
+            "gitArenaUser"
+        );
 
     if (savedUser) {
 
@@ -84,31 +83,110 @@ function getUserData() {
 
     }
 
-    localStorage.setItem(
-        "gitArenaUser",
-        JSON.stringify(defaultUser)
-    );
+
+    /*
+       If arenaProfile already exists,
+       use the same builder identity.
+    */
+
+    const arenaProfile =
+        localStorage.getItem(
+            "arenaProfile"
+        );
+
+
+    if (arenaProfile) {
+
+        const profile =
+            JSON.parse(arenaProfile);
+
+        const user = {
+
+            name:
+                profile.name,
+
+            xp:
+                profile.xp,
+
+            level:
+                profile.level,
+
+            streak:
+                profile.streak,
+
+            completed:
+                profile.missions,
+
+            inProgress:
+                0
+
+        };
+
+        localStorage.setItem(
+            "gitArenaUser",
+            JSON.stringify(user)
+        );
+
+        return user;
+
+    }
+
 
     return defaultUser;
 
 }
 
 
-/* ================= XP SYSTEM ================= */
+//* ================= XP SYSTEM ================= */
 
 function addXP(amount) {
 
-    const user = getUserData();
+    const user =
+        getUserData();
 
     user.xp += amount;
+
+    user.level =
+        Math.floor(
+            user.xp / 500
+        ) + 1;
+
 
     localStorage.setItem(
         "gitArenaUser",
         JSON.stringify(user)
     );
 
-}
 
+    /*
+       Keep arenaProfile synchronized.
+    */
+
+    const savedProfile =
+        localStorage.getItem(
+            "arenaProfile"
+        );
+
+
+    if (savedProfile) {
+
+        const profile =
+            JSON.parse(savedProfile);
+
+        profile.xp =
+            user.xp;
+
+        profile.level =
+            user.level;
+
+        localStorage.setItem(
+            "arenaProfile",
+            JSON.stringify(profile)
+        );
+
+    }
+
+}
 
 /* ================= CHALLENGE STATUS ================= */
 
